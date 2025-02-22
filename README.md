@@ -2,7 +2,7 @@
 
 The **Form Builder** is a custom drag-and-drop form builder built using **Next.js**. It allows users to create and customize forms dynamically by dragging and dropping various form elements. This project is designed to be lightweight, fast, and easy to use.
 
-This is a modified version of already existing Form Builder by [https://ui.indie-starter.dev/form-builder](Indie UI).
+This is a modified version of already existing Form Builder by [Indie UI](https://ui.indie-starter.dev/form-builder).
 
 ---
 
@@ -31,7 +31,7 @@ This is a modified version of already existing Form Builder by [https://ui.indie
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/form-builder.git
+   git clone https://github.com/Subu19/form_builder.git
    ```
 2. Navigate to the project directory:
    ```bash
