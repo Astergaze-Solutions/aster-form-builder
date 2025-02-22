@@ -11,6 +11,8 @@ import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builde
 import { templates } from '../constant/templates';
 import { FormProps, UseFormReturn } from 'react-hook-form';
 import { TemplatesSelect } from './templates-select';
+import { Eye } from 'lucide-react';
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 //======================================
 export function FormBuilderMain() {
@@ -34,20 +36,34 @@ export function FormBuilderMain() {
             >
               {isMS ? 'Single-step' : 'Multi-step'} Form
             </Button>
-            {formElements.length > 1 && (
+            {formElements.length > 1 && (<div className='flex gap-2 '>
+              <Dialog>
+                <DialogTrigger>
+                  <Button size="sm" className=' flex w-full gap-2 bg-[rgb(36,36,36)]'>
+                    <Eye></Eye> Form Preview
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogTitle>Form Preview</DialogTitle>
+                  <DialogDescription>
+                    <FormPreview form={form}></FormPreview>
+                  </DialogDescription>
+                </DialogContent>
+              </Dialog>
               <Button
                 size="sm"
-                variant="ghost"
+                variant="outline"
                 onClick={resetForm}
-                className="rounded-lg"
               >
                 Reset
               </Button>
+            </div>
             )}
           </div>
           <FormEdit />
         </div>
-        <div className="md:col-span-4 flex flex-col">
+        <div className="md:col-span-4 flex flex-col gap-2">
+
           <TemplatesSelect></TemplatesSelect>
         </div>
       </div>

@@ -17,8 +17,8 @@ export default function FormBuilderLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex-col-center w-full min-h-screen">
-      <div className="h-full grow w-full  container">
+    <div className="flex-col-center ">
+      <div className="h-full w-full">
         {children}
       </div>
 
