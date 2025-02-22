@@ -36,7 +36,7 @@ export function FormBuilderMain() {
             >
               {isMS ? 'Single-step' : 'Multi-step'} Form
             </Button>
-            {formElements.length > 1 && (<div className='flex gap-2 '>
+            {formElements.length > 0 && (<div className='flex gap-2 '>
               <Dialog>
                 <DialogTrigger>
                   <Button size="sm" className=' flex w-full gap-2 bg-[rgb(36,36,36)]'>
