@@ -8,8 +8,6 @@ import { FormPreview, FormPreviewProps } from '@/components/form-builder/compone
 import * as React from 'react';
 import { CommandProvider } from '@/components/form-builder/hooks/use-command-ctx';
 import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
-import { templates } from '../constant/templates';
-import { FormProps, UseFormReturn } from 'react-hook-form';
 import { TemplatesSelect } from './templates-select';
 import { Eye } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';

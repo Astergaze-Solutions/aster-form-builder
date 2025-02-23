@@ -14,21 +14,24 @@ const formTemplates = Object.entries(templates).map((template) => ({
 //======================================
 export function TemplatesSelect() {
   const setTemplate = useFormBuilderStore((s) => s.setTemplate);
-  const formElements = templates['contactUs']
-    .template as FormElementOrList[];
-  const { form } = useFormRenderer({ formElemetns: formElements });
-  const onSubmit = (data: any) => {
-    console.log(data);
-  }
   return (
     <div className=" flex flex-col gap-2  border rounded-sm border-dashed  p-3">
       <h1 className='font-bold text-lg text-center mb-3'>Templates</h1>
-      <FormRender onSubmit={(data) => onSubmit(data)} form={form} formElements={formElements} />
       {formTemplates.map(({ label, value }) => (
-        <div key={label} onClick={() => setTemplate(value)} className='border p-2 rounded-lg cursor-pointer h-32 flex items-center justify-center'>
-          {label}
-        </div>
+        <RenderTemplate templateName={value} key={label}></RenderTemplate>
       ))}
+    </div>
+  );
+}
+
+const RenderTemplate = ({ templateName }: { templateName: string }) => {
+  const setTemplate = useFormBuilderStore((s) => s.setTemplate);
+  const formElements = templates[templateName]
+    .template as FormElementOrList[];
+  const { form } = useFormRenderer({ formElemetns: formElements });
+  return (
+    <div className='cursor-pointer bg-gray-200 rounded-lg' onClick={() => setTemplate(templateName)}>
+      <FormRender onSubmit={() => { }} form={form} formElements={formElements} />
     </div>
   );
 }
