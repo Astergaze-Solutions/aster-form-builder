@@ -9,6 +9,8 @@ import { formElementsList } from '@/components/form-builder/constant/form-elemen
 import { FormElement } from '@/components/form-builder/form-types';
 import { FaPlus } from 'react-icons/fa';
 import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
+import { DynamicIcon, DynamicIconModule } from 'lucide-react/dynamic';
+import { formElementsListIcon } from '../constant/form-elements-icons';
 
 /**
  * Use for adding a nested form element
@@ -94,7 +96,7 @@ export function FormElementsStepDropdown({
             key={o.name}
             className="px-4"
           >
-            {o.name}
+            <DynamicIcon size={16} name={`${formElementsListIcon[o.fieldType]}` as any} /> {o.name}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

@@ -154,16 +154,6 @@ function FormElementOptions({
                 form={form}
               />
               <div className="flex-row-between gap-2 w-full">
-                <RenderFormElement
-                  formElement={{
-                    name: 'name',
-                    label: 'Name attribute (leave as it is or put unique name)',
-                    fieldType: 'Input',
-                    defaultValue: formElement.name,
-                    required: true,
-                  }}
-                  form={form}
-                />
                 {formElement.fieldType === 'Input' && (
                   <RenderFormElement
                     formElement={{
@@ -178,7 +168,16 @@ function FormElementOptions({
                   />
                 )}
               </div>
-
+              <RenderFormElement
+                formElement={{
+                  name: 'name',
+                  label: 'Name attribute (leave as it is or put unique name)',
+                  fieldType: 'Input',
+                  defaultValue: formElement.name,
+                  required: true,
+                }}
+                form={form}
+              />
               {formElement.fieldType === 'Slider' && (
                 <div className="flex-row-between gap-3">
                   <RenderFormElement
@@ -330,7 +329,7 @@ export function FieldCustomizationView({
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
           </DialogHeader>
-          <DialogDescription className='max-h-[80vh] overflow-y-auto'>
+          <DialogDescription className='max-h-[80vh] overflow-y-auto p-2'>
             <SavedFormElementOptions />
           </DialogDescription>
         </DialogContent>
