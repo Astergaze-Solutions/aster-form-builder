@@ -28,6 +28,13 @@ export const generateZodSchema = (
           elementSchema = z.string();
         }
         break;
+      case 'Password':
+        if(element.required){
+        elementSchema = z.string().nonempty();
+        }else{
+          elementSchema = z.string();
+        }
+        break;
       case 'DatePicker':
         elementSchema = z.coerce.date();
         break;

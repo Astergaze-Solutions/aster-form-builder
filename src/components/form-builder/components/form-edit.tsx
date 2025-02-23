@@ -3,10 +3,8 @@ import type {
   FormElementOrList,
   FormStep,
 } from '@/components/form-builder/form-types';
-import * as React from 'react';
 import { AnimatePresence, Reorder } from 'framer-motion';
 import { MdDelete } from 'react-icons/md';
-import { IoIosSwap } from 'react-icons/io';
 import { Button } from '@/components/ui/button';
 import { LuGripVertical } from 'react-icons/lu';
 import { FieldCustomizationView } from '@/components/form-builder/components/field-customization-view';
@@ -14,11 +12,9 @@ import { FormElementsDropdown } from '@/components/form-builder/components/form-
 import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
 import { StepContainer } from '@/components/form-builder/components/step-container';
 import { useForm } from 'react-hook-form';
-import { FormPreview } from './form-preview';
 import { RenderFormElement } from './render-form-element';
-import { useFormBuilder } from '../hooks/use-form-builder';
-import { RenderRawElement } from './render-raw-elements';
 import { ArrowLeftRight } from 'lucide-react';
+import { Form } from '@/components/ui/form';
 
 type EditFormItemProps = {
   element: FormElement;
@@ -37,7 +33,6 @@ const EditFormItem = (props: EditFormItemProps) => {
   const { element, fieldIndex } = props;
   const dropElement = useFormBuilderStore((s) => s.dropElement);
   const isNested = typeof props?.j === 'number';
-
   let DisplayName =
     'label' in element
       ? element?.label
@@ -50,7 +45,7 @@ const EditFormItem = (props: EditFormItemProps) => {
     slicedDisplayName.length > 4
       ? `${slicedDisplayName.join(' ')} ...`
       : slicedDisplayName.join(' ');
-
+  const form = useForm();
   return (
     <div className="relative w-full group">
       <div className=" flex-row-between p-2">
@@ -60,7 +55,9 @@ const EditFormItem = (props: EditFormItemProps) => {
           ) : (
             <LuGripVertical className="dark:text-muted-foreground text-muted-foreground group-hover:opacity-100 opacity-0 transition-all" />
           )}
-          <RenderRawElement formElement={element}></RenderRawElement>
+          <Form {...form}>
+            <RenderFormElement formElement={element} form={form} />
+          </Form>
         </div>
 
         <div className="right-3 -top-6  bg-background  absolute flex-row-end opacity-0 group-hover:opacity-100 duration-75 border border-dashed border-gray-300 rounded-lg">

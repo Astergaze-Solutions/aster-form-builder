@@ -7,6 +7,7 @@ import {
   DialogHeader,
   DialogContent,
   DialogTrigger,
+  DialogDescription,
 } from '@/components/ui/dialog';
 import {
   Drawer,
@@ -18,10 +19,12 @@ import {
 import { FaEdit } from 'react-icons/fa';
 import type { FormElement } from '@/components/form-builder/form-types';
 import { useForm } from 'react-hook-form';
-import { Form } from '@/components/ui/form';
+import { Form, FormLabel } from '@/components/ui/form';
 import { isStatic } from '@/components/form-builder/libs/utils';
 import { RenderFormElement } from '@/components/form-builder/components/render-form-element';
 import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
+import { Input } from '@/components/ui/input';
+import { Plus, Trash, Trash2, X } from 'lucide-react';
 
 const inputTypes = [
   { value: 'text', label: 'Text' },
@@ -31,6 +34,10 @@ const inputTypes = [
   { value: 'password', label: 'Password' },
   { value: 'tel', label: 'Telephone' },
 ];
+interface OptionsInterface {
+  value: string,
+  label: string
+}
 function FormElementOptions({
   fieldIndex,
   close,
@@ -46,8 +53,40 @@ function FormElementOptions({
   const form = useForm<FormElement>({
     defaultValues: formElement as FormElement,
   });
+  const { handleSubmit, getValues, setValue } = form;
+
+  //Options
+  const optionValueRef = React.useRef(null);
+  const optionLabelRef = React.useRef(null);
+  const hasOptions = ['Select', 'MultiSelect', 'RadioGroup'].includes(formElement.fieldType);
+  const [options, setOptions] = React.useState<OptionsInterface[]>(hasOptions ? (formElement as any).options : [])
+
+  const addOption = () => {
+    if (!optionLabelRef.current || !optionValueRef.current) return;
+    const labelElement = optionLabelRef.current as HTMLInputElement;
+    const valueElement = optionValueRef.current as HTMLInputElement;
+    if (labelElement.value.trim() === "") return;
+    const newOption: OptionsInterface = {
+      value: valueElement.value,
+      label: labelElement.value
+    }
+    setOptions((opt) => [...opt, newOption]);
+    labelElement.value = "";
+    valueElement.value = (parseInt(valueElement.value) + 1).toString();
+  }
+
+  React.useEffect(() => {
+    if (hasOptions) {
+      setValue("options", options);
+    }
+  }, [options]);
+
+  const removeOption = (index: number) => {
+    const updatedOptions = options.filter((opt, i) => i != index);
+    setOptions(updatedOptions);
+  }
+
   const editElement = useFormBuilderStore((s) => s.editElement);
-  const { handleSubmit, getValues } = form;
   const onSubmit = () => {
     editElement({
       fieldIndex: fieldIndex,
@@ -57,7 +96,7 @@ function FormElementOptions({
     });
     close();
   };
-  // const hasOptions = ['Select', 'MultiSelect'].includes(formElement.fieldType);
+
   return (
     <Form {...form}>
       <form
@@ -83,12 +122,13 @@ function FormElementOptions({
           ) : (
             <div className="flex-col-start w-full gap-3 mb-2">
               <div className="flex-row-between gap-2 w-full">
+
                 <RenderFormElement
                   formElement={{
-                    name: 'name',
-                    label: 'Name attribute',
+                    name: 'label',
+                    label: 'Title',
                     fieldType: 'Input',
-                    defaultValue: formElement.name,
+                    type: 'text',
                     required: true,
                   }}
                   form={form}
@@ -96,7 +136,7 @@ function FormElementOptions({
                 <RenderFormElement
                   formElement={{
                     name: 'placeholder',
-                    label: 'Placeholder attribute',
+                    label: 'Placeholder',
                     fieldType: 'Input',
                     type: 'text',
                     required: true,
@@ -104,13 +144,22 @@ function FormElementOptions({
                   form={form}
                 />
               </div>
+              <RenderFormElement
+                formElement={{
+                  name: 'description',
+                  label: 'Describe the field',
+                  fieldType: 'Input',
+                  placeholder: 'Add a description',
+                }}
+                form={form}
+              />
               <div className="flex-row-between gap-2 w-full">
                 <RenderFormElement
                   formElement={{
-                    name: 'label',
-                    label: 'Label attribute',
+                    name: 'name',
+                    label: 'Name attribute (leave as it is or put unique name)',
                     fieldType: 'Input',
-                    type: 'text',
+                    defaultValue: formElement.name,
                     required: true,
                   }}
                   form={form}
@@ -129,15 +178,7 @@ function FormElementOptions({
                   />
                 )}
               </div>
-              <RenderFormElement
-                formElement={{
-                  name: 'description',
-                  label: 'Describe the field',
-                  fieldType: 'Input',
-                  placeholder: 'Add a description',
-                }}
-                form={form}
-              />
+
               {formElement.fieldType === 'Slider' && (
                 <div className="flex-row-between gap-3">
                   <RenderFormElement
@@ -212,6 +253,28 @@ function FormElementOptions({
               </div>
             </div>
           )}
+          {hasOptions ? (
+            <div className='flex flex-col gap-2'>
+              <FormLabel className='text-gray-500'>Options</FormLabel>
+              <div className='flex flex-col gap-2 border rounded-lg w-fit p-3 '>
+                <div className='flex gap-2'>
+                  <Input ref={optionValueRef} placeholder='Value' className='w-10' defaultValue={options.length + 1} />
+                  <Input ref={optionLabelRef} placeholder='Label' />
+                  <Button type='button' onClick={addOption} variant={"outline"} size={"sm"}><Plus /></Button>
+                </div>
+                <hr />
+                {options.map((opt, i) => (
+                  <div className='flex gap-2 items-center'>
+                    <div className=''> {opt.value}.</div>
+                    <Input className='w-44 bg-white' defaultValue={opt.label}></Input>
+                    <Button onClick={() => removeOption(i)} type='button' className='duration-100' variant={"ghost"}> <X size={16} /></Button>
+                  </div>
+                ))}
+
+              </div>
+            </div>
+
+          ) : ""}
         </div>
         <div className="flex-row-end gap-3 w-full">
           <Button size="sm" variant="ghost" onClick={close} type="button">
@@ -267,7 +330,9 @@ export function FieldCustomizationView({
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
           </DialogHeader>
-          <SavedFormElementOptions />
+          <DialogDescription className='max-h-[80vh] overflow-y-auto'>
+            <SavedFormElementOptions />
+          </DialogDescription>
         </DialogContent>
       </Dialog>
     );
