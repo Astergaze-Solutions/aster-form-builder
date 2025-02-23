@@ -9,7 +9,7 @@ import * as React from 'react';
 import { CommandProvider } from '@/components/form-builder/hooks/use-command-ctx';
 import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
 import { TemplatesSelect } from './templates-select';
-import { Eye } from 'lucide-react';
+import { Circle, Eye } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 //======================================
@@ -30,7 +30,7 @@ export function FormBuilderMain() {
         <CommandProvider>
           <FormElementSelector />
         </CommandProvider>
-        <div className="px-4 sm:px-0 w-full md:col-span-6 min-w-full grow ">
+        <div className="px-4 sm:px-0 w-full md:col-span-6 min-w-full grow">
           <div className="pb-4 flex-row-between">
             <Button
               size="sm"
@@ -64,7 +64,17 @@ export function FormBuilderMain() {
             </div>
             )}
           </div>
-          <FormEdit />
+          <div className='m-auto border  max-w-[1000px] rounded-xl'>
+            <div className='w-full p-2 py-3 flex gap-2 bg-gray-100'>
+              <Circle size={12} className='text-red-500 fill-red-500' />
+              <Circle size={12} className='text-yellow-500 fill-yellow-500' />
+              <Circle size={12} className='text-green-500 fill-green-500' />
+            </div>
+            <hr />
+            <div className='p-5'>
+              <FormEdit />
+            </div>
+          </div>
         </div>
         <div className="md:col-span-4 flex flex-col gap-2">
           <TemplatesSelect></TemplatesSelect>

@@ -28,7 +28,7 @@ export function FormElementsDropdown({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="rounded-xl h-9">
+        <Button variant="ghost" size="icon" className="hover:bg-gray-200 h-9">
           <FaPlus />
         </Button>
       </DropdownMenuTrigger>

@@ -18,6 +18,7 @@ import { FormPreview } from './form-preview';
 import { RenderFormElement } from './render-form-element';
 import { useFormBuilder } from '../hooks/use-form-builder';
 import { RenderRawElement } from './render-raw-elements';
+import { ArrowLeftRight } from 'lucide-react';
 
 type EditFormItemProps = {
   element: FormElement;
@@ -51,18 +52,18 @@ const EditFormItem = (props: EditFormItemProps) => {
       : slicedDisplayName.join(' ');
 
   return (
-    <div className="w-full group">
-      <div className="relative flex-row-between p-2">
+    <div className="relative w-full group">
+      <div className=" flex-row-between p-2">
         <div className="flex-row-start gap-2 size-full">
           {isNested ? (
             <span className="w-1" />
           ) : (
-            <LuGripVertical className="dark:text-muted-foreground text-muted-foreground" />
+            <LuGripVertical className="dark:text-muted-foreground text-muted-foreground group-hover:opacity-100 opacity-0 transition-all" />
           )}
           <RenderRawElement formElement={element}></RenderRawElement>
         </div>
 
-        <div className="right-3 -top-1  absolute flex-row-end opacity-0 group-hover:opacity-100 duration-100">
+        <div className="right-3 -top-6  bg-background  absolute flex-row-end opacity-0 group-hover:opacity-100 duration-75 border border-dashed border-gray-300 rounded-lg">
           {element.fieldType !== 'Separator' && (
             <FieldCustomizationView
               formElement={element as FormElement}
@@ -81,7 +82,7 @@ const EditFormItem = (props: EditFormItemProps) => {
                 stepIndex: props?.stepIndex,
               });
             }}
-            className="rounded-xl h-9"
+            className=" h-9 hover:bg-gray-200 "
           >
             <MdDelete />
           </Button>
@@ -145,7 +146,7 @@ export function FormEdit() {
                             <Reorder.Item
                               value={element}
                               key={element.map((f) => f.name).join('-')}
-                              className="flex items-center justify-start gap-2 "
+                              className="relative group rounded-xl p-1.5  justify-start  border border-transparent hover:border-dashed hover:border-gray-300 bg-background"
                               variants={animateVariants}
                               initial="initial"
                               animate="animate"
@@ -160,15 +161,15 @@ export function FormEdit() {
                                   });
                                 }}
                                 variant="ghost"
-                                className="center shrink h-full py-4 border border-transparent hover:border-dashed hover:border-gray-300 rounded-xl bg-white px-3.5"
+                                className="absolute opacity-0 group-hover:opacity-100 transition-all duration-75 bg-background border border-dashed border-gray-300 z-10 -left-4 top-[50%] p-0 -translate-y-[50%] rounded-full w-10 h-10"
                               >
-                                <IoIosSwap className="dark:text-muted-foreground text-muted-foreground" />
+                                <ArrowLeftRight size={16} className="dark:text-muted-foreground text-muted-foreground" />
                               </Button>
                               <div className="flex items-center justify-start grow flex-wrap sm:flex-nowrap w-full gap-2">
                                 {element.map((el, j) => (
                                   <div
                                     key={el.name + j}
-                                    className="w-full rounded-xl border border-transparent hover:border-dashed hover:border-gray-300 py-1.5 bg-white"
+                                    className="w-full"
                                   >
                                     <EditFormItem
                                       fieldIndex={fieldIndex}
@@ -186,7 +187,7 @@ export function FormEdit() {
                           <Reorder.Item
                             key={element.name + stepIndex + 10}
                             value={element}
-                            className="w-full rounded-xl border border-transparent hover:border-dashed hover:border-gray-300 py-1.5 bg-white"
+                            className="w-full rounded-xl border border-transparent hover:border-dashed hover:border-gray-300 py-1.5 bg-background"
                             variants={animateVariants}
                             initial="initial"
                             animate="animate"
@@ -230,6 +231,8 @@ export function FormEdit() {
                     initial="initial"
                     animate="animate"
                     exit="exit"
+                    className="relative group rounded-xl p-1.5  justify-start  border border-transparent hover:border-dashed hover:border-gray-300 bg-white"
+
                   >
                     <div className="flex items-center justify-start gap-2 ">
                       <Button
@@ -240,15 +243,15 @@ export function FormEdit() {
                           });
                         }}
                         variant="ghost"
-                        className="center shrink h-full py-4 border border-transparent hover:border-dashed hover:border-gray-300 rounded-xl bg-white px-3.5"
+                        className="absolute opacity-0 group-hover:opacity-100 transition-all duration-75 bg-background border border-dashed border-gray-300 z-10 -left-4 top-[50%] p-0 -translate-y-[50%] rounded-full w-10 h-10"
                       >
-                        <IoIosSwap className="dark:text-muted-foreground text-muted-foreground" />
+                        <ArrowLeftRight size={16} className="dark:text-muted-foreground text-muted-foreground" />
                       </Button>
                       <div className="flex items-center justify-start grow flex-wrap sm:flex-nowrap w-full gap-2">
                         {element.map((el, j) => (
                           <div
                             key={el.name + j}
-                            className="w-full rounded-xl border border-transparent hover:border-dashed hover:border-gray-300 py-1.5 bg-white"
+                            className="w-full "
                           >
                             <EditFormItem
                               key={el.name + j}

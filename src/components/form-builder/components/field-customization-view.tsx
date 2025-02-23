@@ -258,7 +258,7 @@ export function FieldCustomizationView({
             type="button"
             variant="ghost"
             size="icon"
-            className="rounded-xl h-9"
+            className=" h-9 hover:bg-gray-200"
           >
             <FaEdit />
           </Button>

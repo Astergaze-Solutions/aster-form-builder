@@ -29,7 +29,7 @@ const RenderTemplate = ({ templateName }: { templateName: string }) => {
     .template as FormElementOrList[];
   const { form } = useFormRenderer({ formElemetns: formElements });
   return (
-    <div className='cursor-pointer bg-gray-200 rounded-lg' onClick={() => setTemplate(templateName)}>
+    <div className='cursor-pointer' onClick={() => setTemplate(templateName)}>
       <FormRender onSubmit={() => { }} form={form} formElements={formElements} />
     </div>
   );
