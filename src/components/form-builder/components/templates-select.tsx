@@ -13,7 +13,6 @@ const formTemplates = Object.entries(templates).map((template) => ({
 }));
 //======================================
 export function TemplatesSelect() {
-  const setTemplate = useFormBuilderStore((s) => s.setTemplate);
   return (
     <div className=" flex flex-col gap-2  border rounded-sm border-dashed  p-3">
       <h1 className='font-bold text-lg text-center mb-3'>Templates</h1>
