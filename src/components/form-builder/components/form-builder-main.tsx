@@ -20,6 +20,12 @@ export function FormBuilderMain() {
   const formElements = useFormBuilderStore((s) => s.formElements);
   const isMS = useFormBuilderStore((s) => s.isMS);
   const setIsMS = useFormBuilderStore((s) => s.setIsMS);
+
+  React.useEffect(() => {
+    console.log(form);
+    console.log(formElements)
+  }, [formElements])
+
   return (
     <>
       <div className="w-full h-full grid md:grid-cols-12 gap-3 lg:gap-5 p-10">
@@ -63,7 +69,6 @@ export function FormBuilderMain() {
           <FormEdit />
         </div>
         <div className="md:col-span-4 flex flex-col gap-2">
-
           <TemplatesSelect></TemplatesSelect>
         </div>
       </div>

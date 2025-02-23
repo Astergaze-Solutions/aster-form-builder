@@ -73,7 +73,6 @@ export const RenderFormElement = ({
                   placeholder={formElement.placeholder}
                   disabled={formElement.disabled}
                   type={formElement.type ?? 'text'}
-                  // onChange={(e) => field.onChange(e.target.valueAsNumber)}
                   {...field}
                 />
               </FormControl>
