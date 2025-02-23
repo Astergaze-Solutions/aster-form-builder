@@ -9,7 +9,7 @@ import * as React from 'react';
 import { CommandProvider } from '@/components/form-builder/hooks/use-command-ctx';
 import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
 import { TemplatesSelect } from './templates-select';
-import { Circle, Eye } from 'lucide-react';
+import { Circle, Eye, Trash } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 //======================================
@@ -40,35 +40,38 @@ export function FormBuilderMain() {
             >
               {isMS ? 'Single-step' : 'Multi-step'} Form
             </Button>
-            {formElements.length > 0 && (<div className='flex gap-2 '>
-              <Dialog>
-                <DialogTrigger>
-                  <Button size="sm" className=' flex w-full gap-2 bg-[rgb(36,36,36)]'>
-                    <Eye></Eye> Form Preview
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogTitle>Form Preview</DialogTitle>
-                  <DialogDescription>
-                    <FormPreview form={form}></FormPreview>
-                  </DialogDescription>
-                </DialogContent>
-              </Dialog>
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={resetForm}
-              >
-                Reset
-              </Button>
-            </div>
-            )}
+
           </div>
-          <div className='m-auto border  max-w-[1000px] rounded-xl'>
-            <div className='w-full p-2 py-3 flex gap-2 bg-gray-100'>
-              <Circle size={12} className='text-red-500 fill-red-500' />
-              <Circle size={12} className='text-yellow-500 fill-yellow-500' />
-              <Circle size={12} className='text-green-500 fill-green-500' />
+          <div className='m-auto border  max-w-[800px] rounded-xl'>
+            <div className='w-full p-2 py-3 flex gap-2 justify-between'>
+              <div className='flex flex-1 gap-2 items-center'>
+                <Circle size={16} className='text-red-500 fill-red-500' />
+                <Circle size={16} className='text-yellow-500 fill-yellow-500' />
+                <Circle size={16} className='text-green-500 fill-green-500' />
+              </div>
+              <div className='flex flex-1 items-center justify-end pr-5'>
+                {formElements.length > 0 && (<div className='flex gap-5 '>
+                  <Dialog>
+                    <DialogTrigger>
+                      <div className='flex items-center gap-2 hover:text-gray-500 cursor-pointer'>
+                        <Eye size={20}></Eye> Preview
+                      </div>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogTitle>Form Preview</DialogTitle>
+                      <DialogDescription>
+                        <FormPreview form={form}></FormPreview>
+                      </DialogDescription>
+                    </DialogContent>
+                  </Dialog>
+                  <div className='flex items-center gap-2 hover:text-gray-500 cursor-pointer' onClick={resetForm}>
+
+                    <Trash size={20} /> Reset
+
+                  </div>
+                </div>
+                )}
+              </div>
             </div>
             <hr />
             <div className='p-5'>

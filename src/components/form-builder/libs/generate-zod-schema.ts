@@ -22,7 +22,11 @@ export const generateZodSchema = (
           elementSchema = z.coerce.number();
           break;
         }
-        elementSchema = z.string();
+        if(element.required){
+        elementSchema = z.string().nonempty();
+        }else{
+          elementSchema = z.string();
+        }
         break;
       case 'DatePicker':
         elementSchema = z.coerce.date();
