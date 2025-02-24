@@ -1,4 +1,7 @@
-import { format } from 'date-fns';
+import type { FormElement } from '@/components/form-builder/form-types';
+import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   FormControl,
   FormDescription,
@@ -7,20 +10,14 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import type * as React from 'react';
-import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
-import type { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
-import type { FormElement } from '@/components/form-builder/form-types';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Switch } from '@/components/ui/switch';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from '@/components/ui/input-otp';
+import { Label } from '@/components/ui/label';
 import {
   MultiSelect,
   MultiSelectContent,
@@ -29,26 +26,29 @@ import {
   MultiSelectTrigger,
   MultiSelectValue,
 } from '@/components/ui/multi-select';
-import { Slider } from '@/components/ui/slider';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { CalendarIcon } from 'lucide-react';
-import { Calendar } from '@/components/ui/calendar';
-import { Separator } from '@/components/ui/separator';
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from '@/components/ui/input-otp';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Separator } from '@/components/ui/separator';
+import { Slider } from '@/components/ui/slider';
+import { Switch } from '@/components/ui/switch';
+import { Textarea } from '@/components/ui/textarea';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { cn } from '@/lib/utils';
+import { format } from 'date-fns';
+import { CalendarIcon } from 'lucide-react';
+import type * as React from 'react';
+import type { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
 
 export const RenderFormElement = ({
   formElement,

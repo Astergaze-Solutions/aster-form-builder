@@ -1,12 +1,12 @@
+import { FormElementsSelectorCommand } from '@/components/form-builder/components/form-elements-selector-command';
+import { formElementsList } from '@/components/form-builder/constant/form-elements-list';
+import type { FormElement } from '@/components/form-builder/form-types';
+import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { DynamicIcon } from 'lucide-react/dynamic';
 import { MdAdd } from 'react-icons/md';
-import { FormElementsSelectorCommand } from '@/components/form-builder/components/form-elements-selector-command';
-import { Badge } from '@/components/ui/badge';
-import { FormElement } from '@/components/form-builder/form-types';
-import { formElementsList } from '@/components/form-builder/constant/form-elements-list';
-import { TemplatesSelect } from '@/components/form-builder/components/templates-select';
-import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
+import { formElementsListIcon } from '../constant/form-elements-icons';
 
 //======================================
 export function FormElementSelector() {
@@ -39,12 +39,8 @@ export function FormElementSelector() {
           >
             <div className="flex-row-start gap-1">
               <MdAdd />
-              {o.name}
-              {o.isNew && (
-                <Badge className="text-sm rounded-full ml-1 size-5 center">
-                  N
-                </Badge>
-              )}
+              <DynamicIcon name={formElementsListIcon[o.fieldType] as any} size={16} /> {o.name}
+
             </div>
           </Button>
         ))}

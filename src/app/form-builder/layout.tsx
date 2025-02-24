@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { FaGithub } from 'react-icons/fa6';
 
 const title = 'Shadcn Form Builder';

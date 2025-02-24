@@ -1,4 +1,8 @@
-'use client';
+'use client';;
+import { formElementsList } from '@/components/form-builder/constant/form-elements-list';
+import type { FormElement } from '@/components/form-builder/form-types';
+import { useCommand } from '@/components/form-builder/hooks/use-command-ctx';
+import { Badge } from '@/components/ui/badge';
 import {
   CommandDialog,
   CommandEmpty,
@@ -7,11 +11,6 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command';
-import * as React from 'react';
-import { formElementsList } from '@/components/form-builder/constant/form-elements-list';
-import { Badge } from '@/components/ui/badge';
-import { useCommand } from '@/components/form-builder/hooks/use-command-ctx';
-import { FormElement } from '@/components/form-builder/form-types';
 import useFormBuilderStore from '../hooks/use-form-builder-store';
 
 export function FormElementsSelectorCommand() {

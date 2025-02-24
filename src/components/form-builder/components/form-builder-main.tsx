@@ -1,16 +1,16 @@
 'use client';
 
-import { useFormBuilder } from '@/components/form-builder/hooks/use-form-builder';
-import { Button } from '@/components/ui/button';
-import { FormElementSelector } from '@/components/form-builder/components/form-elements-selector';
 import { FormEdit } from '@/components/form-builder/components/form-edit';
-import { FormPreview, FormPreviewProps } from '@/components/form-builder/components/form-preview';
-import * as React from 'react';
+import { FormElementSelector } from '@/components/form-builder/components/form-elements-selector';
+import { FormPreview } from '@/components/form-builder/components/form-preview';
 import { CommandProvider } from '@/components/form-builder/hooks/use-command-ctx';
+import { useFormBuilder } from '@/components/form-builder/hooks/use-form-builder';
 import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
-import { TemplatesSelect } from './templates-select';
-import { Circle, Eye, Trash } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Circle, Eye, Trash } from 'lucide-react';
+import * as React from 'react';
+import { TemplatesSelect } from './templates-select';
 
 //======================================
 export function FormBuilderMain() {
@@ -54,13 +54,13 @@ export function FormBuilderMain() {
                   <Dialog>
                     <DialogTrigger>
                       <div className='flex items-center gap-2 hover:text-gray-500 cursor-pointer'>
-                        <Eye size={20}></Eye> Preview
+                        <Eye size={20} /> Preview
                       </div>
                     </DialogTrigger>
                     <DialogContent>
                       <DialogTitle>Form Preview</DialogTitle>
                       <DialogDescription>
-                        <FormPreview form={form}></FormPreview>
+                        <FormPreview form={form} />
                       </DialogDescription>
                     </DialogContent>
                   </Dialog>
@@ -80,7 +80,7 @@ export function FormBuilderMain() {
           </div>
         </div>
         <div className="md:col-span-4 flex flex-col gap-2">
-          <TemplatesSelect></TemplatesSelect>
+          <TemplatesSelect />
         </div>
       </div>
     </>

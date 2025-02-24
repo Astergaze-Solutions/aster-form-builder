@@ -1,11 +1,11 @@
 'use client';
-import * as React from 'react';
 import type { FormElement, FormStep } from '@/components/form-builder/form-types';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { generateZodSchema } from '@/components/form-builder/libs/generate-zod-schema';
 import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
 import { flattenFormSteps } from '@/components/form-builder/libs/form-elements-helpers';
+import { generateZodSchema } from '@/components/form-builder/libs/generate-zod-schema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as React from 'react';
+import { useForm } from 'react-hook-form';
 
 //-------------------------------------------
 export const useFormBuilder = () => {

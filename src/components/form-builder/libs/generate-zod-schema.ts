@@ -1,9 +1,9 @@
-import { isStatic } from '@/components/form-builder/libs/utils';
 import type { FormElement } from '@/components/form-builder/form-types';
-import { z, type ZodTypeAny } from 'zod';
+import { isStatic } from '@/components/form-builder/libs/utils';
+import { type ZodTypeAny, z } from 'zod';
 
 export const generateZodSchema = (
-  formElements: FormElement[],
+  formElements: FormElement[]
 ): z.ZodObject<any> => {
   const schemaObject: Record<string, z.ZodTypeAny> = {};
 
@@ -22,16 +22,16 @@ export const generateZodSchema = (
           elementSchema = z.coerce.number();
           break;
         }
-        if(element.required){
-        elementSchema = z.string().nonempty();
-        }else{
+        if (element.required) {
+          elementSchema = z.string().nonempty();
+        } else {
           elementSchema = z.string();
         }
         break;
       case 'Password':
-        if(element.required){
-        elementSchema = z.string().nonempty();
-        }else{
+        if (element.required) {
+          elementSchema = z.string().nonempty();
+        } else {
           elementSchema = z.string();
         }
         break;
@@ -71,13 +71,13 @@ export const generateZodSchema = (
       if (element.min !== undefined) {
         elementSchema = (elementSchema as any).min(
           element.min,
-          `Must be at least ${element.min}`,
+          `Must be at least ${element.min}`
         );
       }
       if (element.max !== undefined) {
         elementSchema = (elementSchema as any).max(
           element.max,
-          `Must be at most ${element.max}`,
+          `Must be at most ${element.max}`
         );
       }
     }
@@ -145,7 +145,7 @@ export const zodSchemaToString = (schema: z.ZodTypeAny): string => {
   if (schema instanceof z.ZodObject) {
     const shape = schema.shape;
     const shapeStrs = Object.entries(shape).map(
-      ([key, value]) => `${key}: ${zodSchemaToString(value as ZodTypeAny)}`,
+      ([key, value]) => `${key}: ${zodSchemaToString(value as ZodTypeAny)}`
     );
     return `z.object({
   ${shapeStrs.join(',\n  ')}

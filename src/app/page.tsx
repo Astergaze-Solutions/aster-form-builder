@@ -1,10 +1,7 @@
-"use client"
-import { FormBuilderMain } from "@/components/form-builder/components/form-builder-main";
+"use client";
 import { Button } from "@/components/ui/button";
-import { Edit } from "lucide-react";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { createSwapy, Swapy } from 'swapy'
+import { useEffect, useRef } from "react";
+import { type Swapy, createSwapy } from 'swapy'
 export default function Home() {
   const swapy = useRef<Swapy>(null)
   const container = useRef<HTMLDivElement>(null)

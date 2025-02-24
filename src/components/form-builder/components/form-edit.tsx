@@ -1,20 +1,20 @@
+import { FieldCustomizationView } from '@/components/form-builder/components/field-customization-view';
+import { FormElementsDropdown } from '@/components/form-builder/components/form-elements-dropdown';
+import { StepContainer } from '@/components/form-builder/components/step-container';
 import type {
   FormElement,
   FormElementOrList,
   FormStep,
 } from '@/components/form-builder/form-types';
-import { AnimatePresence, Reorder } from 'framer-motion';
-import { MdDelete } from 'react-icons/md';
-import { Button } from '@/components/ui/button';
-import { LuGripVertical } from 'react-icons/lu';
-import { FieldCustomizationView } from '@/components/form-builder/components/field-customization-view';
-import { FormElementsDropdown } from '@/components/form-builder/components/form-elements-dropdown';
 import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
-import { StepContainer } from '@/components/form-builder/components/step-container';
-import { useForm } from 'react-hook-form';
-import { RenderFormElement } from './render-form-element';
-import { ArrowLeftRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
+import { AnimatePresence, Reorder } from 'framer-motion';
+import { ArrowLeftRight } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { LuGripVertical } from 'react-icons/lu';
+import { MdDelete } from 'react-icons/md';
+import { RenderFormElement } from './render-form-element';
 
 type EditFormItemProps = {
   element: FormElement;

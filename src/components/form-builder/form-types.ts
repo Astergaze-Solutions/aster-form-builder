@@ -1,13 +1,13 @@
-import { CheckboxProps } from '@radix-ui/react-checkbox';
-import { SliderProps } from '@radix-ui/react-slider';
-import { SwitchProps } from '@radix-ui/react-switch';
-import { SeparatorProps } from '@radix-ui/react-separator';
-import { OTPInputProps } from 'input-otp';
-import { RadioGroupProps } from '@radix-ui/react-radio-group';
-import {
+import type { CheckboxProps } from '@radix-ui/react-checkbox';
+import type { RadioGroupProps } from '@radix-ui/react-radio-group';
+import type { SeparatorProps } from '@radix-ui/react-separator';
+import type { SliderProps } from '@radix-ui/react-slider';
+import type { SwitchProps } from '@radix-ui/react-switch';
+import type {
   ToggleGroupMultipleProps,
   ToggleGroupSingleProps,
 } from '@radix-ui/react-toggle-group';
+import type { OTPInputProps } from 'input-otp';
 
 type Option = { value: string; label: string };
 //------------------------------------------------------------
@@ -171,10 +171,10 @@ type FormFieldElement =
   | Slider
   | DatePicker;
 
-  /**
-   * StaticFormElement is a type that represents a static form element
+/**
+ * StaticFormElement is a type that represents a static form element
  * that is not editable by the user
-  */
+ */
 export type StaticFormElement = H1 | H2 | H3 | Paragraph | Divider;
 
 export type FormElement = FormFieldElement | StaticFormElement;
@@ -201,7 +201,7 @@ type DropElementOptions = {
    * Index where an element should be dropped to the form elements array
    */
   fieldIndex: number;
-  /** 
+  /**
    * Index where a nested element should be dropped to the nested array
    */
   j?: number;
@@ -210,20 +210,16 @@ type DropElementOptions = {
    */
   isMS?: boolean;
   stepIndex?: number;
-}
-export type DropElement = (
-  options: DropElementOptions,
-) => void;
+};
+export type DropElement = (options: DropElementOptions) => void;
 
 type EditElementOptions = {
   fieldIndex: number;
   modifiedFormElement: FormElement;
   j?: number;
   stepIndex?: number;
-}
-export type EditElement = (
-  options: EditElementOptions,
-) => void;
+};
+export type EditElement = (options: EditElementOptions) => void;
 
 type ReorderParams = {
   newOrder: FormElementOrList[];
@@ -233,15 +229,13 @@ type ReorderParams = {
 
 export type ReorderElements = (params: ReorderParams) => void;
 
-export type AppendElement = (
-  options: {
-    fieldType: FormElement['fieldType'],
-    /**
-     * index where a nested element should be appended to the main array
-     */
-    fieldIndex?: number | null;
-    stepIndex?: number;
-  },
-) => void;
+export type AppendElement = (options: {
+  fieldType: FormElement['fieldType'];
+  /**
+   * index where a nested element should be appended to the main array
+   */
+  fieldIndex?: number | null;
+  stepIndex?: number;
+}) => void;
 
 export type SetTemplate = (template: string) => void;

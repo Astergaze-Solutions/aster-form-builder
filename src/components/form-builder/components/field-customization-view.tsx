@@ -1,13 +1,15 @@
-import * as React from 'react';
-import { useMediaQuery } from '@/hooks/use-media-query';
+import { RenderFormElement } from '@/components/form-builder/components/render-form-element';
+import type { FormElement } from '@/components/form-builder/form-types';
+import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
+import { isStatic } from '@/components/form-builder/libs/utils';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
-  DialogTitle,
-  DialogHeader,
   DialogContent,
-  DialogTrigger,
   DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from '@/components/ui/dialog';
 import {
   Drawer,
@@ -16,15 +18,13 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer';
-import { FaEdit } from 'react-icons/fa';
-import type { FormElement } from '@/components/form-builder/form-types';
-import { useForm } from 'react-hook-form';
 import { Form, FormLabel } from '@/components/ui/form';
-import { isStatic } from '@/components/form-builder/libs/utils';
-import { RenderFormElement } from '@/components/form-builder/components/render-form-element';
-import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
 import { Input } from '@/components/ui/input';
-import { Plus, Trash, Trash2, X } from 'lucide-react';
+import { useMediaQuery } from '@/hooks/use-media-query';
+import { Plus, X } from 'lucide-react';
+import * as React from 'react';
+import { useForm } from 'react-hook-form';
+import { FaEdit } from 'react-icons/fa';
 
 const inputTypes = [
   { value: 'text', label: 'Text' },
@@ -72,7 +72,7 @@ function FormElementOptions({
     }
     setOptions((opt) => [...opt, newOption]);
     labelElement.value = "";
-    valueElement.value = (parseInt(valueElement.value) + 1).toString();
+    valueElement.value = (Number.parseInt(valueElement.value) + 1).toString();
   }
 
   React.useEffect(() => {
@@ -82,7 +82,7 @@ function FormElementOptions({
   }, [options]);
 
   const removeOption = (index: number) => {
-    const updatedOptions = options.filter((opt, i) => i != index);
+    const updatedOptions = options.filter((opt, i) => i !== index);
     setOptions(updatedOptions);
   }
 
@@ -263,9 +263,9 @@ function FormElementOptions({
                 </div>
                 <hr />
                 {options.map((opt, i) => (
-                  <div className='flex gap-2 items-center'>
+                  <div key={`options${i}`} className='flex gap-2 items-center'>
                     <div className=''> {opt.value}.</div>
-                    <Input className='w-44 bg-white' defaultValue={opt.label}></Input>
+                    <Input className='w-44 bg-white' defaultValue={opt.label} />
                     <Button onClick={() => removeOption(i)} type='button' className='duration-100' variant={"ghost"}> <X size={16} /></Button>
                   </div>
                 ))}
