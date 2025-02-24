@@ -7,7 +7,7 @@ import { CommandProvider } from '../hooks/use-command-ctx';
 import { useFormBuilder } from '../hooks/use-form-builder';
 import useFormBuilderStore from '../hooks/use-form-builder-store';
 import { FormEdit } from './form-edit';
-import { FormElementSelector } from './form-elements-selector';
+import { FormElementsSelectorCommand } from './form-elements-selector-command';
 import { FormPreview } from './form-preview';
 
 //======================================
@@ -23,8 +23,8 @@ export function FormBuilderMain({ handleCreate }: props) {
   return (
     <CommandProvider>
       <div className="w-full h-full grid md:grid-cols-5  gap-3 lg:gap-5">
-        <FormElementSelector />
-        <div className="px-4 sm:px-0 w-full md:col-span-4 min-w-full grow">
+        {/* <FormElementSelector /> */}
+        <div className="px-4 sm:px-0 w-full md:col-span-5 min-w-full grow">
           <div className='m-auto  max-w-[800px]'>
             <div className="pb-4 flex flex-row items-center justify-between">
               <Button
@@ -77,8 +77,12 @@ export function FormBuilderMain({ handleCreate }: props) {
               </div>
               <hr />
               <div className='p-5'>
+
                 <FormEdit />
               </div>
+            </div>
+            <div className='m-2'>
+              <FormElementsSelectorCommand />
             </div>
           </div>
         </div>

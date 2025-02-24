@@ -12,10 +12,11 @@ import type {
 } from '@/form-builder/form-types';
 import useFormBuilderStore from '@/form-builder/hooks/use-form-builder-store';
 import { AnimatePresence, Reorder } from 'framer-motion';
-import { ArrowLeftRight } from 'lucide-react';
+import { ArrowLeftRight, Plus } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { LuGripVertical } from 'react-icons/lu';
 import { MdDelete } from 'react-icons/md';
+import { useCommand } from '../hooks/use-command-ctx';
 
 type EditFormItemProps = {
   element: FormElement;
@@ -117,6 +118,11 @@ export function FormEdit() {
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -15 },
   };
+  const { setStepIndex, setOpenCommand } = useCommand();
+  const handleAddElement = () => {
+    setStepIndex(undefined);
+    setOpenCommand(true);
+  }
   switch (isMS) {
     case true:
       if (formElements.length === 0) {
@@ -209,81 +215,87 @@ export function FormEdit() {
       );
     default:
       return (
-        <Reorder.Group
-          axis="y"
-          onReorder={(newOrder) => {
-            reorder({ newOrder, fieldIndex: null });
-          }}
-          values={formElements as FormElementOrList[]}
-          className="flex flex-col gap-2"
-          tabIndex={-1}
-        >
-          <AnimatePresence mode="popLayout">
-            {(formElements as FormElementOrList[]).map((element, i) => {
-              if (Array.isArray(element)) {
+        <div>
+          <Reorder.Group
+            axis="y"
+            onReorder={(newOrder) => {
+              reorder({ newOrder, fieldIndex: null });
+            }}
+            values={formElements as FormElementOrList[]}
+            className="flex flex-col gap-2"
+            tabIndex={-1}
+          >
+            <AnimatePresence mode="popLayout">
+              {(formElements as FormElementOrList[]).map((element, i) => {
+                if (Array.isArray(element)) {
+                  return (
+                    <Reorder.Item
+                      value={element}
+                      key={element.map((f) => f.name).join('-')}
+                      variants={animateVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      className="relative group rounded-xl p-1.5  justify-start  border border-transparent hover:border-dashed hover:border-gray-300 bg-white"
+
+                    >
+                      <div className="flex items-center justify-start gap-2 ">
+                        <Button
+                          onClick={() => {
+                            reorder({
+                              newOrder: element.reverse(),
+                              fieldIndex: i,
+                            });
+                          }}
+                          variant="ghost"
+                          className="absolute opacity-0 group-hover:opacity-100 transition-all duration-75 bg-background border border-dashed border-gray-300 z-10 -left-4 top-[50%] p-0 -translate-y-[50%] rounded-full w-10 h-10"
+                        >
+                          <ArrowLeftRight size={16} className="dark:text-muted-foreground text-muted-foreground" />
+                        </Button>
+                        <div className="flex items-center justify-start grow flex-wrap sm:flex-nowrap w-full gap-2">
+                          {element.map((el, j) => (
+                            <div
+                              key={el.name + j}
+                              className="w-full "
+                            >
+                              <EditFormItem
+                                key={el.name + j}
+                                fieldIndex={i}
+                                j={j}
+                                element={el}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </Reorder.Item>
+                  );
+                }
                 return (
                   <Reorder.Item
+                    key={element.name}
                     value={element}
-                    key={element.map((f) => f.name).join('-')}
+                    className="rounded-xl border border-transparent hover:hover:border-dashed hover:border-gray-300 py-1.5 w-full bg-white"
                     variants={animateVariants}
                     initial="initial"
                     animate="animate"
                     exit="exit"
-                    className="relative group rounded-xl p-1.5  justify-start  border border-transparent hover:border-dashed hover:border-gray-300 bg-white"
-
                   >
-                    <div className="flex items-center justify-start gap-2 ">
-                      <Button
-                        onClick={() => {
-                          reorder({
-                            newOrder: element.reverse(),
-                            fieldIndex: i,
-                          });
-                        }}
-                        variant="ghost"
-                        className="absolute opacity-0 group-hover:opacity-100 transition-all duration-75 bg-background border border-dashed border-gray-300 z-10 -left-4 top-[50%] p-0 -translate-y-[50%] rounded-full w-10 h-10"
-                      >
-                        <ArrowLeftRight size={16} className="dark:text-muted-foreground text-muted-foreground" />
-                      </Button>
-                      <div className="flex items-center justify-start grow flex-wrap sm:flex-nowrap w-full gap-2">
-                        {element.map((el, j) => (
-                          <div
-                            key={el.name + j}
-                            className="w-full "
-                          >
-                            <EditFormItem
-                              key={el.name + j}
-                              fieldIndex={i}
-                              j={j}
-                              element={el}
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    <EditFormItem
+                      key={element.name + i}
+                      fieldIndex={i}
+                      element={element}
+                    />
                   </Reorder.Item>
                 );
-              }
-              return (
-                <Reorder.Item
-                  key={element.name}
-                  value={element}
-                  className="rounded-xl border border-transparent hover:hover:border-dashed hover:border-gray-300 py-1.5 w-full bg-white"
-                  variants={animateVariants}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                >
-                  <EditFormItem
-                    key={element.name + i}
-                    fieldIndex={i}
-                    element={element}
-                  />
-                </Reorder.Item>
-              );
-            })}
-          </AnimatePresence>
-        </Reorder.Group>
+              })}
+            </AnimatePresence>
+          </Reorder.Group>
+          <div className="flex flex-row items-center justify-start my-3 text-muted-foreground">
+            <Button size={"sm"} className='rounded-md' onClick={handleAddElement} variant={"secondary"}> <Plus /> Add Element</Button>
+          </div>
+        </div>
+
       );
   }
 }
