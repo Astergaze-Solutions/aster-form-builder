@@ -35,7 +35,6 @@ export default function FormBuilderPage() {
           </DialogClose>
         </DialogFooter>
       </DialogContent>
-
     </Dialog>
   </div>
 }
