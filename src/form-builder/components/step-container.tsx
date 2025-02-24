@@ -33,7 +33,7 @@ export function StepContainer({
 
       <div className="space-y-3">{children}</div>
       <div className="flex flex-row items-center justify-start my-3 text-muted-foreground">
-        <Button size={"sm"} className='rounded-md' onClick={handleAddElement} variant={"secondary"}> <Plus /> Add Element</Button>
+        <Button size={"sm"} className='rounded-md' onClick={handleAddElement} variant={"default"}> <Plus /> Add Element</Button>
       </div>
       <div className="flex flex-row items-center justify-between px-2 pt-4 border-t">
         <div className="py-1 text-muted-foreground center font-medium">

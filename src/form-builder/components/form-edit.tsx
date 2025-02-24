@@ -292,7 +292,7 @@ export function FormEdit() {
             </AnimatePresence>
           </Reorder.Group>
           <div className="flex flex-row items-center justify-start my-3 text-muted-foreground">
-            <Button size={"sm"} className='rounded-md' onClick={handleAddElement} variant={"secondary"}> <Plus /> Add Element</Button>
+            <Button size={"sm"} className='rounded-md' onClick={handleAddElement} variant={"default"}> <Plus /> Add Element</Button>
           </div>
         </div>
 
