@@ -56,7 +56,7 @@ export function FormPreview({ form }: FormPreviewProps) {
               })
             )}
             {!isMS && (
-              <div className="flex-row-end w-full pt-3">
+              <div className="flex flex-row items-center justify-end w-full pt-3">
                 <Button type="submit" className="rounded-lg" size="sm">
                   {formState.isSubmitting
                     ? 'Submitting...'

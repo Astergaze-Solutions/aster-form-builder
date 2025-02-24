@@ -49,8 +49,8 @@ const EditFormItem = (props: EditFormItemProps) => {
   const form = useForm();
   return (
     <div className="relative w-full group">
-      <div className=" flex-row-between p-2">
-        <div className="flex-row-start gap-2 size-full">
+      <div className=" flex flex-row items-center justify-between p-2">
+        <div className="flex flex-row items-center justify-start gap-2 size-full">
           {isNested ? (
             <span className="w-1" />
           ) : (
@@ -61,7 +61,7 @@ const EditFormItem = (props: EditFormItemProps) => {
           </Form>
         </div>
 
-        <div className="right-3 -top-6  bg-background  absolute flex-row-end opacity-0 group-hover:opacity-100 duration-75 border border-dashed border-gray-300 rounded-lg">
+        <div className="right-3 -top-6  bg-background  absolute flex flex-row items-center justify-end opacity-0 group-hover:opacity-100 duration-75 border border-dashed border-gray-300 rounded-lg">
           {element.fieldType !== 'Separator' && (
             <FieldCustomizationView
               formElement={element as FormElement}

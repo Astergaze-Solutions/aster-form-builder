@@ -39,7 +39,7 @@ export function FormElementSelector() {
             }}
             className="gap-1 justify-start rounded-lg w-fit md:w-full relative text-sm px-2"
           >
-            <div className="flex-row-start gap-1">
+            <div className="flex flex-row items-center justify-start gap-1">
               <MdAdd />
               <DynamicIcon name={formElementsListIcon[o.fieldType] as any} size={16} /> {o.name}
 

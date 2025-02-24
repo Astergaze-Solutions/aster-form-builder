@@ -26,7 +26,7 @@ export function FormBuilderMain({ handleCreate }: props) {
         <FormElementSelector />
         <div className="px-4 sm:px-0 w-full md:col-span-4 min-w-full grow">
           <div className='m-auto  max-w-[800px]'>
-            <div className="pb-4 flex-row-between">
+            <div className="pb-4 flex flex-row items-center justify-between">
               <Button
                 size="sm"
                 variant="outline"

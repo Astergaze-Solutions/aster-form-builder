@@ -72,7 +72,7 @@ export function MultiStepViewer({
           })}
         </motion.div>
       </AnimatePresence>
-      <div className="flex-row-between gap-3 w-full pt-3">
+      <div className="flex flex-row items-center justify-between gap-3 w-full pt-3">
         <Button size="sm" variant="ghost" onClick={goToPrevious} type="button">
           Previous
         </Button>

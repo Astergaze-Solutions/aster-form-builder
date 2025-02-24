@@ -30,15 +30,15 @@ export function StepContainer({
       animate={{ opacity: 1, y: 0, transition: { duration: 0.2, delay: 0.05 } }}
       exit={{ opacity: 0, y: -15, transition: { duration: 0.3 } }}
     >
-      <div className="flex-row-start mb-3 text-muted-foreground">
+      <div className="flex flex-row items-center justify-start mb-3 text-muted-foreground">
         <Button className='rounded-md' onClick={handleAddElement} variant={"ghost"}> <Plus /> Add Element</Button>
       </div>
       <div className="space-y-3">{children}</div>
-      <div className="flex-row-between px-2 pt-4">
+      <div className="flex flex-row items-center justify-between px-2 pt-4">
         <div className="py-1 text-muted-foreground center font-medium">
           Step {stepIndex + 1}
         </div>
-        <div className="flex-row-end gap-3">
+        <div className="flex flex-row items-center justify-end gap-3">
           <Button
             onClick={() => removeFormStep(stepIndex)}
             variant="ghost"

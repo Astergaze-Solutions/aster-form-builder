@@ -125,7 +125,7 @@ function FormElementOptions({
             </div>
           ) : (
             <div className="flex flex-col w-full gap-3 mb-2">
-              <div className="flex-row-between gap-2 w-full">
+              <div className="flex flex-row items-center justify-between gap-2 w-full">
 
                 <RenderFormElement
                   formElement={{
@@ -157,7 +157,7 @@ function FormElementOptions({
                 }}
                 form={form}
               />
-              <div className="flex-row-between gap-2 w-full">
+              <div className="flex flex-row items-center justify-between gap-2 w-full">
                 {formElement.fieldType === 'Input' && (
                   <RenderFormElement
                     formElement={{
@@ -172,7 +172,7 @@ function FormElementOptions({
                   />
                 )}
               </div>
-              <div className="flex-row-start gap-4 pl-1">
+              <div className="flex flex-row items-center justify-start gap-4 pl-1">
                 <RenderFormElement
                   formElement={{
                     name: 'required',
@@ -212,7 +212,7 @@ function FormElementOptions({
               ) : ""}
 
               {formElement.fieldType === 'Slider' && (
-                <div className="flex-row-between gap-3">
+                <div className="flex flex-row items-center justify-between gap-3">
                   <RenderFormElement
                     formElement={{
                       name: 'min',
@@ -279,7 +279,7 @@ function FormElementOptions({
             </div>
           )}
         </div>
-        <div className="flex-row-end gap-3 w-full">
+        <div className="flex flex-row items-center justify-end gap-3 w-full">
           <Button size="sm" variant="ghost" onClick={close} type="button">
             Cancel
           </Button>
