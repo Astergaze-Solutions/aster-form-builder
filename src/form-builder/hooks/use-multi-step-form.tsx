@@ -1,6 +1,6 @@
 'use client';
 
-import type { FormStep } from '@/components/form-builder/form-types';
+import type { FormStep } from '@/form-builder/form-types';
 import { useCallback, useState } from 'react';
 
 type UseFormStepsProps = {

@@ -1,8 +1,8 @@
 "use client"
-import { FormBuilderMain, type FormElementsProps } from '@/components/form-builder/components/form-builder-main';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { FormBuilderMain, type FormElementsProps } from '@/form-builder/components/form-builder-main';
 import JsonView from '@uiw/react-json-view';
 import { useState } from 'react';
 

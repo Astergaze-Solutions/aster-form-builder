@@ -1,7 +1,4 @@
 'use client';
-import { formElementsList } from '@/components/form-builder/constant/form-elements-list';
-import type { FormElement } from '@/components/form-builder/form-types';
-import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -9,6 +6,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { formElementsList } from '@/form-builder/constant/form-elements-list';
+import type { FormElement } from '@/form-builder/form-types';
+import useFormBuilderStore from '@/form-builder/hooks/use-form-builder-store';
 import { DynamicIcon } from 'lucide-react/dynamic';
 import { FaPlus } from 'react-icons/fa';
 import { formElementsListIcon } from '../constant/form-elements-icons';

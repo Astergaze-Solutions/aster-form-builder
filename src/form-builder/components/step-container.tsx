@@ -1,6 +1,6 @@
 "use client";
-import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
 import { Button } from '@/components/ui/button';
+import useFormBuilderStore from '@/form-builder/hooks/use-form-builder-store';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { MdAdd, MdDelete } from 'react-icons/md';

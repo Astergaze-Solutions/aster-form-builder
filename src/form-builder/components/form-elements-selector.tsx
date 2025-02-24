@@ -1,11 +1,11 @@
 'use client';
 
-import { FormElementsSelectorCommand } from '@/components/form-builder/components/form-elements-selector-command';
-import { formElementsList } from '@/components/form-builder/constant/form-elements-list';
-import type { FormElement } from '@/components/form-builder/form-types';
-import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { FormElementsSelectorCommand } from '@/form-builder/components/form-elements-selector-command';
+import { formElementsList } from '@/form-builder/constant/form-elements-list';
+import type { FormElement } from '@/form-builder/form-types';
+import useFormBuilderStore from '@/form-builder/hooks/use-form-builder-store';
 import { DynamicIcon } from 'lucide-react/dynamic';
 import { MdAdd } from 'react-icons/md';
 import { formElementsListIcon } from '../constant/form-elements-icons';

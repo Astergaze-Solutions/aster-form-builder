@@ -1,15 +1,15 @@
 'use client';
-import { FieldCustomizationView } from '@/components/form-builder/components/field-customization-view';
-import { FormElementsDropdown } from '@/components/form-builder/components/form-elements-dropdown';
-import { StepContainer } from '@/components/form-builder/components/step-container';
+import { Button } from '@/components/ui/button';
+import { Form } from '@/components/ui/form';
+import { FieldCustomizationView } from '@/form-builder/components/field-customization-view';
+import { FormElementsDropdown } from '@/form-builder/components/form-elements-dropdown';
+import { StepContainer } from '@/form-builder/components/step-container';
 import type {
   FormElement,
   FormElementOrList,
   FormStep,
-} from '@/components/form-builder/form-types';
-import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
-import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
+} from '@/form-builder/form-types';
+import useFormBuilderStore from '@/form-builder/hooks/use-form-builder-store';
 import { AnimatePresence, Reorder } from 'framer-motion';
 import { ArrowLeftRight } from 'lucide-react';
 import { useForm } from 'react-hook-form';

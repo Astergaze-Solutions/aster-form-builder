@@ -1,5 +1,5 @@
-import type { FormElement } from '@/components/form-builder/form-types';
-import { isStatic } from '@/components/form-builder/libs/utils';
+import type { FormElement } from '@/form-builder/form-types';
+import { isStatic } from '@/form-builder/libs/utils';
 import { type ZodTypeAny, z } from 'zod';
 
 export const generateZodSchema = (

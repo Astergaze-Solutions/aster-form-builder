@@ -2,7 +2,7 @@ import type {
   FormElementList,
   FormElementOrList,
   FormStep,
-} from '@/components/form-builder/form-types';
+} from '@/form-builder/form-types';
 
 /**
  * Removes an element from an array at the specified index.

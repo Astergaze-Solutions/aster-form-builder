@@ -1,7 +1,4 @@
 'use client';;
-import { formElementsList } from '@/components/form-builder/constant/form-elements-list';
-import type { FormElement } from '@/components/form-builder/form-types';
-import { useCommand } from '@/components/form-builder/hooks/use-command-ctx';
 import {
   CommandDialog,
   CommandEmpty,
@@ -10,6 +7,9 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command';
+import { formElementsList } from '@/form-builder/constant/form-elements-list';
+import type { FormElement } from '@/form-builder/form-types';
+import { useCommand } from '@/form-builder/hooks/use-command-ctx';
 import { DynamicIcon } from 'lucide-react/dynamic';
 import { formElementsListIcon } from '../constant/form-elements-icons';
 import useFormBuilderStore from '../hooks/use-form-builder-store';

@@ -1,9 +1,9 @@
 "use client";;
-import { MultiStepViewer } from '@/components/form-builder/components/multi-step-viewer';
-import { RenderFormElement } from '@/components/form-builder/components/render-form-element';
-import type { FormElementList, FormElementOrList, FormStep } from '@/components/form-builder/form-types';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
+import { MultiStepViewer } from '@/form-builder/components/multi-step-viewer';
+import { RenderFormElement } from '@/form-builder/components/render-form-element';
+import type { FormElementList, FormElementOrList, FormStep } from '@/form-builder/form-types';
 import type { UseFormReturn } from 'react-hook-form';
 
 interface FormPreviewProps {

@@ -1,9 +1,4 @@
 'use client';
-import { RenderFormElement } from '@/components/form-builder/components/render-form-element';
-import type { FormElement } from '@/components/form-builder/form-types';
-import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
-import { useMediaQuery } from '@/components/form-builder/hooks/use-media-query';
-import { isStatic } from '@/components/form-builder/libs/utils';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import {
@@ -15,6 +10,11 @@ import {
 } from '@/components/ui/drawer';
 import { Form, FormLabel } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { RenderFormElement } from '@/form-builder/components/render-form-element';
+import type { FormElement } from '@/form-builder/form-types';
+import useFormBuilderStore from '@/form-builder/hooks/use-form-builder-store';
+import { useMediaQuery } from '@/form-builder/hooks/use-media-query';
+import { isStatic } from '@/form-builder/libs/utils';
 import { Plus, X } from 'lucide-react';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';

@@ -1,5 +1,5 @@
 'use client';
-import { createSafeContext } from '@/components/form-builder/libs/create-safe-context';
+import { createSafeContext } from '@/form-builder/libs/create-safe-context';
 import * as React from 'react';
 
 type CommandCtx = {

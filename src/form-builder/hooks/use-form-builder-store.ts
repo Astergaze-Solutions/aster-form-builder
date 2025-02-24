@@ -1,5 +1,5 @@
-import { defaultFormElements } from '@/components/form-builder/constant/default-form-element';
-import { templates } from '@/components/form-builder/constant/templates';
+import { defaultFormElements } from '@/form-builder/constant/default-form-element';
+import { templates } from '@/form-builder/constant/templates';
 import type {
   AppendElement,
   DropElement,
@@ -10,13 +10,13 @@ import type {
   FormStep,
   ReorderElements,
   SetTemplate,
-} from '@/components/form-builder/form-types';
+} from '@/form-builder/form-types';
 import {
   dropAtIndex,
   flattenFormSteps,
   insertAtIndex,
   transformToStepFormList,
-} from '@/components/form-builder/libs/form-elements-helpers';
+} from '@/form-builder/libs/form-elements-helpers';
 import { create } from 'zustand';
 
 type MSForm = {
