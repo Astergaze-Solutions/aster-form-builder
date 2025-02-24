@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { FieldCustomizationView } from '@/form-builder/components/field-customization-view';
 import { FormElementsDropdown } from '@/form-builder/components/form-elements-dropdown';
+import { RenderFormElement } from '@/form-builder/components/render-form-element';
 import { StepContainer } from '@/form-builder/components/step-container';
 import type {
   FormElement,
@@ -15,7 +16,6 @@ import { ArrowLeftRight } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { LuGripVertical } from 'react-icons/lu';
 import { MdDelete } from 'react-icons/md';
-import { RenderFormElement } from './render-form-element';
 
 type EditFormItemProps = {
   element: FormElement;
