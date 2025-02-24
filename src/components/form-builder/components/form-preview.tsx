@@ -1,3 +1,5 @@
+
+'use client';
 import { MultiStepViewer } from '@/components/form-builder/components/multi-step-viewer';
 import { RenderFormElement } from '@/components/form-builder/components/render-form-element';
 import type { FormElementOrList, FormStep } from '@/components/form-builder/form-types';

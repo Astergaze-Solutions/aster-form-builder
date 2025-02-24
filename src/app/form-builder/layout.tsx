@@ -1,10 +1,5 @@
-import { Button } from '@/components/ui/button';
 import type { Metadata } from 'next';
-import { FaGithub } from 'react-icons/fa6';
 
-const title = 'Shadcn Form Builder';
-const description =
-  'Build forms in minutes not hours for free using shadcn, tailwindcss, React, Zod, and React Hook Form';
 
 export const metadata: Metadata = {
   title: "Form Builder",

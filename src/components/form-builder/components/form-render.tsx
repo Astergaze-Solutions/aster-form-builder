@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import type { UseFormReturn } from 'react-hook-form';
 
-export interface FormPreviewProps {
+interface FormPreviewProps {
     form: UseFormReturn<any, any, undefined>;
     formElements: FormStep[] | FormElementList
     onSubmit: (data: any) => void;

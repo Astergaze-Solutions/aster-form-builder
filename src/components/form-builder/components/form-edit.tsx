@@ -1,3 +1,4 @@
+'use client';
 import { FieldCustomizationView } from '@/components/form-builder/components/field-customization-view';
 import { FormElementsDropdown } from '@/components/form-builder/components/form-elements-dropdown';
 import { StepContainer } from '@/components/form-builder/components/step-container';

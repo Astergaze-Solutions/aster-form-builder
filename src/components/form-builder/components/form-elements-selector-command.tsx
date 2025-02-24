@@ -2,7 +2,6 @@
 import { formElementsList } from '@/components/form-builder/constant/form-elements-list';
 import type { FormElement } from '@/components/form-builder/form-types';
 import { useCommand } from '@/components/form-builder/hooks/use-command-ctx';
-import { Badge } from '@/components/ui/badge';
 import {
   CommandDialog,
   CommandEmpty,
@@ -11,13 +10,16 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command';
+import { DynamicIcon } from 'lucide-react/dynamic';
+import { formElementsListIcon } from '../constant/form-elements-icons';
 import useFormBuilderStore from '../hooks/use-form-builder-store';
+
 
 export function FormElementsSelectorCommand() {
   const appendElement = useFormBuilderStore((s) => s.appendElement);
   const formElements = useFormBuilderStore((s) => s.formElements);
   const isMS = useFormBuilderStore((s) => s.isMS);
-  const { openCommand: open, setOpenCommand: setOpen } = useCommand();
+  const { openCommand: open, setOpenCommand: setOpen, stepIndex } = useCommand();
   return (
     <div>
       <p className="text-sm text-muted-foreground mb-2 text-center">
@@ -40,15 +42,14 @@ export function FormElementsSelectorCommand() {
                 onSelect={() => {
                   appendElement({
                     fieldType: o.fieldType as FormElement['fieldType'],
-                    stepIndex: isMS ? formElements.length - 1 : undefined,
+                    stepIndex: isMS ? stepIndex : undefined,
                   });
                 }}
                 className="gap-3"
               >
+                <DynamicIcon size={16} name={`${formElementsListIcon[o.fieldType]}` as any} />
                 {o.name}
-                {o.isNew && (
-                  <Badge className="text-sm py-0 rounded-[2px]">New</Badge>
-                )}
+
               </CommandItem>
             ))}
           </CommandGroup>

@@ -1,6 +1,11 @@
 "use client"
-import { FormBuilderMain } from '@/components/form-builder/components/form-builder-main';
+import { FormBuilderMain, type FormElementsProps } from '@/components/form-builder/components/form-builder-main';
 
 export default function FormBuilderPage() {
-  return <FormBuilderMain />
+  const handleCreate = (formElement: FormElementsProps) => {
+    console.log(formElement);
+  }
+  return <div className='p-10'>
+    <FormBuilderMain handleCreate={handleCreate} />
+  </div>
 }

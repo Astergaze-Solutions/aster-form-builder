@@ -1,3 +1,4 @@
+'use client';
 import { formElementsList } from '@/components/form-builder/constant/form-elements-list';
 import type { FormElement } from '@/components/form-builder/form-types';
 import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
@@ -51,6 +52,7 @@ export function FormElementsDropdown({
             disabled={!!o.static}
             className="px-4"
           >
+            <DynamicIcon size={16} name={`${formElementsListIcon[o.fieldType]}` as any} />
             {o.name}
           </DropdownMenuItem>
         ))}
@@ -59,47 +61,3 @@ export function FormElementsDropdown({
   );
 }
 
-/**
- * Use for adding a form element to the form when MSF is enabled
- */
-//======================================
-export function FormElementsStepDropdown({
-  stepIndex,
-}: {
-  stepIndex?: number;
-}) {
-  const appendElement = useFormBuilderStore((s) => s.appendElement);
-  return (
-    <DropdownMenu modal={false}>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className={'rounded-xl h-9'}>
-          <div className="flex-row-start gap-2">
-            <FaPlus />
-            Add Element
-          </div>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
-        data-align="end" // not working
-        className="space-y-3 max-h-64 overflow-y-scroll"
-      >
-        {formElementsList.map((o) => (
-          <DropdownMenuItem
-            onSelect={(e) => {
-              e.preventDefault(); // Prevent the menu from closing
-              appendElement({
-                fieldIndex: null,
-                fieldType: o.fieldType as FormElement['fieldType'],
-                stepIndex,
-              });
-            }}
-            key={o.name}
-            className="px-4"
-          >
-            <DynamicIcon size={16} name={`${formElementsListIcon[o.fieldType]}` as any} /> {o.name}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}

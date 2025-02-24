@@ -1,16 +1,11 @@
+'use client';
 import { RenderFormElement } from '@/components/form-builder/components/render-form-element';
 import type { FormElement } from '@/components/form-builder/form-types';
 import useFormBuilderStore from '@/components/form-builder/hooks/use-form-builder-store';
+import { useMediaQuery } from '@/components/form-builder/hooks/use-media-query';
 import { isStatic } from '@/components/form-builder/libs/utils';
 import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import {
   Drawer,
   DrawerContent,
@@ -20,7 +15,6 @@ import {
 } from '@/components/ui/drawer';
 import { Form, FormLabel } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { useMediaQuery } from '@/hooks/use-media-query';
 import { Plus, X } from 'lucide-react';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
@@ -56,23 +50,20 @@ function FormElementOptions({
   const { handleSubmit, getValues, setValue } = form;
 
   //Options
-  const optionValueRef = React.useRef(null);
   const optionLabelRef = React.useRef(null);
   const hasOptions = ['Select', 'MultiSelect', 'RadioGroup'].includes(formElement.fieldType);
   const [options, setOptions] = React.useState<OptionsInterface[]>(hasOptions ? (formElement as any).options : [])
 
   const addOption = () => {
-    if (!optionLabelRef.current || !optionValueRef.current) return;
+    if (!optionLabelRef.current) return;
     const labelElement = optionLabelRef.current as HTMLInputElement;
-    const valueElement = optionValueRef.current as HTMLInputElement;
     if (labelElement.value.trim() === "") return;
     const newOption: OptionsInterface = {
-      value: valueElement.value,
+      value: (options.length + 1).toString(),
       label: labelElement.value
     }
     setOptions((opt) => [...opt, newOption]);
     labelElement.value = "";
-    valueElement.value = (Number.parseInt(valueElement.value) + 1).toString();
   }
 
   React.useEffect(() => {
@@ -83,9 +74,24 @@ function FormElementOptions({
 
   const removeOption = (index: number) => {
     const updatedOptions = options.filter((opt, i) => i !== index);
+    const updatedValues: OptionsInterface[] = updatedOptions.map((opt, i) => {
+      return {
+        label: opt.label,
+        value: (i + 1).toString()
+      }
+    });
+    setOptions(updatedValues);
+  }
+  const editOption = (index: number, value: string) => {
+    const updatedOptions: OptionsInterface[] = options.map((opt, i) => {
+      if (i === index) {
+        const updatedOption: OptionsInterface = { value: opt.value, label: value };
+        return updatedOption;
+      }
+      return opt;
+    });
     setOptions(updatedOptions);
   }
-
   const editElement = useFormBuilderStore((s) => s.editElement);
   const onSubmit = () => {
     editElement({
@@ -103,8 +109,6 @@ function FormElementOptions({
         onSubmit={handleSubmit(onSubmit)}
         className="pt-3 border-t border-dashed"
       >
-        {/* {JSON.stringify(watch(), null, 2)} {index} */}
-        {/* {JSON.stringify(formElement, null, 2)} */}
         <div>
           {isStatic(formElement.fieldType) ? (
             <div className="mb-4">
@@ -120,7 +124,7 @@ function FormElementOptions({
               />
             </div>
           ) : (
-            <div className="flex-col-start w-full gap-3 mb-2">
+            <div className="flex flex-col w-full gap-3 mb-2">
               <div className="flex-row-between gap-2 w-full">
 
                 <RenderFormElement
@@ -168,16 +172,45 @@ function FormElementOptions({
                   />
                 )}
               </div>
-              <RenderFormElement
-                formElement={{
-                  name: 'name',
-                  label: 'Name attribute (leave as it is or put unique name)',
-                  fieldType: 'Input',
-                  defaultValue: formElement.name,
-                  required: true,
-                }}
-                form={form}
-              />
+              <div className="flex-row-start gap-4 pl-1">
+                <RenderFormElement
+                  formElement={{
+                    name: 'required',
+                    label: 'Required',
+                    fieldType: 'Checkbox',
+                  }}
+                  form={form}
+                />
+                <RenderFormElement
+                  formElement={{
+                    name: 'disabled',
+                    label: 'Disabled',
+                    fieldType: 'Checkbox',
+                  }}
+                  form={form}
+                />
+              </div>
+              {hasOptions ? (
+                <div className='flex flex-col gap-2'>
+                  <FormLabel className='text-gray-500'>Options</FormLabel>
+                  <div className='flex flex-col gap-2 border rounded-lg w-fit p-3 '>
+                    <div className='flex gap-2'>
+                      <Input ref={optionLabelRef} placeholder='Option Name' />
+                      <Button type='button' onClick={addOption} variant={"outline"} size={"sm"}><Plus /></Button>
+                    </div>
+                    <hr />
+                    {options.map((opt, i) => (
+                      <div key={opt.value} className='flex gap-2 items-center'>
+                        <div>{opt.value}.</div>
+                        <Input onChange={(e) => editOption(i, e.target.value)} className='w-44 bg-white' value={opt.label} />
+                        <Button onClick={() => removeOption(i)} type='button' className='duration-100' variant={"ghost"}> <X size={16} /></Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+              ) : ""}
+
               {formElement.fieldType === 'Slider' && (
                 <div className="flex-row-between gap-3">
                   <RenderFormElement
@@ -232,48 +265,19 @@ function FormElementOptions({
                   form={form}
                 />
               )}
-              <div className="flex-row-start gap-4 pl-1">
-                <RenderFormElement
-                  formElement={{
-                    name: 'required',
-                    label: 'Required',
-                    fieldType: 'Checkbox',
-                  }}
-                  form={form}
-                />
-                <RenderFormElement
-                  formElement={{
-                    name: 'disabled',
-                    label: 'Disabled',
-                    fieldType: 'Checkbox',
-                  }}
-                  form={form}
-                />
-              </div>
+              <RenderFormElement
+                formElement={{
+                  name: 'name',
+                  label: 'Name attribute (leave as it is or put unique name)',
+                  fieldType: 'Input',
+                  defaultValue: formElement.name,
+                  required: true,
+                }}
+                form={form}
+              />
+
             </div>
           )}
-          {hasOptions ? (
-            <div className='flex flex-col gap-2'>
-              <FormLabel className='text-gray-500'>Options</FormLabel>
-              <div className='flex flex-col gap-2 border rounded-lg w-fit p-3 '>
-                <div className='flex gap-2'>
-                  <Input ref={optionValueRef} placeholder='Value' className='w-10' defaultValue={options.length + 1} />
-                  <Input ref={optionLabelRef} placeholder='Label' />
-                  <Button type='button' onClick={addOption} variant={"outline"} size={"sm"}><Plus /></Button>
-                </div>
-                <hr />
-                {options.map((opt, i) => (
-                  <div key={`options${i}`} className='flex gap-2 items-center'>
-                    <div className=''> {opt.value}.</div>
-                    <Input className='w-44 bg-white' defaultValue={opt.label} />
-                    <Button onClick={() => removeOption(i)} type='button' className='duration-100' variant={"ghost"}> <X size={16} /></Button>
-                  </div>
-                ))}
-
-              </div>
-            </div>
-
-          ) : ""}
         </div>
         <div className="flex-row-end gap-3 w-full">
           <Button size="sm" variant="ghost" onClick={close} type="button">
@@ -326,9 +330,7 @@ export function FieldCustomizationView({
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[520px]">
-          <DialogHeader>
-            <DialogTitle>{title}</DialogTitle>
-          </DialogHeader>
+          <DialogTitle>{title}</DialogTitle>
           <DialogDescription className='max-h-[80vh] overflow-y-auto p-2'>
             <SavedFormElementOptions />
           </DialogDescription>

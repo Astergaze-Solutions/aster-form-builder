@@ -1,17 +1,21 @@
+'use client';
 import { createSafeContext } from '@/components/form-builder/libs/create-safe-context';
 import * as React from 'react';
 
 type CommandCtx = {
   openCommand: boolean;
   setOpenCommand: React.Dispatch<React.SetStateAction<boolean>>;
+  stepIndex: number | undefined,
+  setStepIndex: React.Dispatch<React.SetStateAction<number | undefined>>
 };
 
 const [CommandProv, useCommand] = createSafeContext<CommandCtx>(
   'useCommand must be used within a CommandProv provider',
 );
 
-const CommandProvider = ({ children }: { children: React.ReactNode }) => {
+const CommandProvider = ({ children, keyListen = true }: { children: React.ReactNode, keyListen?: boolean }) => {
   const [openCommand, setOpenCommand] = React.useState(false);
+  const [stepIndex, setStepIndex] = React.useState<number | undefined>(undefined);
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement;
@@ -27,12 +31,13 @@ const CommandProvider = ({ children }: { children: React.ReactNode }) => {
         setOpenCommand((open) => !open);
       }
     };
-
-    document.addEventListener('keydown', down);
-    return () => document.removeEventListener('keydown', down);
+    if (keyListen) {
+      document.addEventListener('keydown', down);
+      return () => document.removeEventListener('keydown', down);
+    }
   }, []);
   return (
-    <CommandProv value={{ openCommand, setOpenCommand }}>
+    <CommandProv value={{ openCommand, setOpenCommand, setStepIndex, stepIndex }}>
       {children}
     </CommandProv>
   );

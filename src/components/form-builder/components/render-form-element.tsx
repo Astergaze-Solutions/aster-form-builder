@@ -1,3 +1,4 @@
+'use client';
 import type { FormElement } from '@/components/form-builder/form-types';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';

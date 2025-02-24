@@ -1,3 +1,5 @@
+'use client';
+
 import { FormElementsSelectorCommand } from '@/components/form-builder/components/form-elements-selector-command';
 import { formElementsList } from '@/components/form-builder/constant/form-elements-list';
 import type { FormElement } from '@/components/form-builder/form-types';
@@ -15,7 +17,7 @@ export function FormElementSelector() {
   const isMS = useFormBuilderStore((s) => s.isMS);
   return (
     <ScrollArea
-      className="border rounded-sm border-dashed overflow-auto p-3 w-full md:col-span-2"
+      className="border rounded-sm border-dashed overflow-auto p-3 w-full md:col-span-1"
       style={{
         height: '100%',
         maxHeight: '100vh',
