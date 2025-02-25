@@ -283,7 +283,7 @@ function FormElementOptions({
           <Button size="sm" variant="ghost" onClick={close} type="button">
             Cancel
           </Button>
-          <Button size="sm" type="submit" variant="secondary">
+          <Button size="sm" type="submit" variant="default">
             Save
           </Button>
         </div>

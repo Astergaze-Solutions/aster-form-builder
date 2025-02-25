@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Circle, Eye, Trash } from 'lucide-react';
+import { useEffect } from 'react';
 import type { FormElementList, FormStep } from '../form-types';
 import { CommandProvider } from '../hooks/use-command-ctx';
 import { useFormBuilder } from '../hooks/use-form-builder';
@@ -13,13 +14,19 @@ import { FormPreview } from './form-preview';
 //======================================
 export type FormElementsProps = FormStep[] | FormElementList
 interface props {
-  handleCreate: (formElements: FormElementsProps) => void
+  handleCreate: (formElements: FormElementsProps) => void;
+  onChange?: (formElements: FormElementsProps) => void
 }
-export function FormBuilderMain({ handleCreate }: props) {
+export function FormBuilderMain({ handleCreate, onChange }: props) {
   const { resetForm, form } = useFormBuilder();
   const formElements = useFormBuilderStore((s) => s.formElements);
   const isMS = useFormBuilderStore((s) => s.isMS);
   const setIsMS = useFormBuilderStore((s) => s.setIsMS);
+  useEffect(() => {
+    if (onChange)
+      onChange(formElements);
+  }, [formElements]);
+
   return (
     <CommandProvider>
       <div className="w-full h-full grid md:grid-cols-5  gap-3 lg:gap-5">
