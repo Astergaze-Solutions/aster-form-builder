@@ -1,4 +1,9 @@
-import type { FormElement, FormElementOrList, FormStep } from '../form-types';
+import type {
+  FormElement,
+  FormElementList,
+  FormElementOrList,
+  FormStep,
+} from '../form-types';
 
 export const isStatic = (fieldType: string) => {
   return ['Separator', 'H1', 'H2', 'H3', 'P'].includes(fieldType);
@@ -24,7 +29,7 @@ export const disableAllElements = (
       return {
         ...formStep,
         stepFields: disableAllElements(formStep.stepFields),
-      };
+      } as unknown as FormElement[];
     } else {
       // If the element is a FormElement, disable it
       return disableElement(element as FormElement);
