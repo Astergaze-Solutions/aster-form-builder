@@ -13,9 +13,11 @@ import type { UseFormReturn } from 'react-hook-form';
 export function MultiStepViewer({
   form,
   formElements,
+  disable
 }: {
   form: UseFormReturn<any, any, undefined>;
   formElements: FormStep[];
+  disable?: boolean
 }) {
   const { currentStep, isLastStep, goToNext, goToPrevious } = useMultiStepForm({
     initialSteps: formElements as FormStep[],
@@ -76,7 +78,7 @@ export function MultiStepViewer({
         <Button size="sm" variant="ghost" onClick={goToPrevious} type="button">
           Previous
         </Button>
-        {isLastStep ? (
+        {isLastStep ? !disable ? (
           <Button size="sm" type="submit">
             {isSubmitting
               ? 'Submitting...'
@@ -84,7 +86,7 @@ export function MultiStepViewer({
                 ? 'Submitted ✅'
                 : 'Submit'}
           </Button>
-        ) : (
+        ) : "" : (
           <Button
             size="sm"
             type="button"

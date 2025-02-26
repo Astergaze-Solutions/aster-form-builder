@@ -124,6 +124,7 @@ export const RenderFormElement = ({
                   name={formElement.name}
                   value={formElement.value}
                   onChange={field.onChange}
+                  disabled={formElement.disabled}
                 >
                   <InputOTPGroup>
                     <InputOTPSlot index={0} />
@@ -181,6 +182,7 @@ export const RenderFormElement = ({
                 <Checkbox
                   {...field}
                   checked={field.value}
+                  disabled={formElement.disabled}
                   onCheckedChange={field.onChange}
                 />
               </FormControl>
@@ -211,6 +213,7 @@ export const RenderFormElement = ({
                 <RadioGroup
                   onValueChange={field.onChange}
                   defaultValue={field.value}
+                  disabled={formElement.disabled}
                 >
                   {formElement.options.map(({ label, value }) => (
                     <div key={value} className="flex items-center gap-x-2">
@@ -234,6 +237,7 @@ export const RenderFormElement = ({
           value={value}
           key={value}
           className="flex items-center gap-x-2"
+          disabled={formElement.disabled}
         >
           {label}
         </ToggleGroupItem>
@@ -305,6 +309,7 @@ export const RenderFormElement = ({
                     {...field}
                     checked={field.value}
                     onCheckedChange={field.onChange}
+                    disabled={formElement.disabled}
                   />
                 </FormControl>
               </div>
@@ -344,6 +349,7 @@ export const RenderFormElement = ({
                     step={step}
                     defaultValue={[defaultValue]}
                     value={value}
+                    disabled={formElement.disabled}
                     onValueChange={(newValue) => field.onChange(newValue[0])}
                   />
                 </FormControl>
@@ -371,6 +377,7 @@ export const RenderFormElement = ({
                 value={field.value}
                 onValueChange={field.onChange}
                 defaultValue={String(field?.value ?? '')}
+                disabled={formElement.disabled}
               >
                 <FormControl>
                   <SelectTrigger>
@@ -403,7 +410,7 @@ export const RenderFormElement = ({
               <FormLabel>
                 {formElement.label} {formElement.required ? ' *' : ''}{' '}
               </FormLabel>
-              <MultiSelect value={field.value} onValueChange={field.onChange}>
+              <MultiSelect value={field.value} onValueChange={field.onChange} disabled={formElement.disabled}>
                 <FormControl>
                   <MultiSelectTrigger>
                     <MultiSelectValue
@@ -467,6 +474,7 @@ export const RenderFormElement = ({
                           shouldDirty: true,
                         });
                       }}
+                      disabled={formElement.disabled}
                       initialFocus
                     />
                   </PopoverContent>

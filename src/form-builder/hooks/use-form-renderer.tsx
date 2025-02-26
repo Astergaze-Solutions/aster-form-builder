@@ -11,13 +11,12 @@ interface DefaultValues {
     [key: string]: any;
 }
 interface props {
-    formElemetns: FormStep[] | FormElementList
+    formElements: FormStep[] | FormElementList
     defaultValues?: DefaultValues
 }
-export const useFormRenderer = ({ formElemetns }: props) => {
+export const useFormRenderer = ({ formElements, defaultValues: userInputs }: props) => {
 
-    const isMS = (formElemetns[0] as FormStep)?.stepFields !== undefined;
-    const formElements = formElemetns;
+    const isMS = (formElements[0] as FormStep)?.stepFields !== undefined;
 
     const flattenFormElements = isMS
         ? flattenFormSteps(formElements as FormStep[]).flat()
@@ -36,7 +35,7 @@ export const useFormRenderer = ({ formElemetns }: props) => {
     const zodSchema = generateZodSchema(filteredFormFields);
 
     const form = useForm({
-        defaultValues,
+        defaultValues: userInputs ? userInputs : defaultValues,
         resolver: zodResolver(zodSchema),
     });
 

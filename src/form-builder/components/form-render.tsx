@@ -5,17 +5,21 @@ import { MultiStepViewer } from '@/form-builder/components/multi-step-viewer';
 import { RenderFormElement } from '@/form-builder/components/render-form-element';
 import type { FormElementList, FormElementOrList, FormStep } from '@/form-builder/form-types';
 import type { UseFormReturn } from 'react-hook-form';
+import { disableAllElements } from '../libs/utils';
 
 interface FormPreviewProps {
     form: UseFormReturn<any, any, undefined>;
-    formElements: FormStep[] | FormElementList
+    formElements: FormElementOrList[]
     onSubmit: (data: any) => void;
+    disable?: boolean
 }
 
-export function FormRender({ form, formElements, onSubmit }: FormPreviewProps) {
-    const isMS = (formElements[0] as FormStep)?.stepFields !== undefined;
+export function FormRender({ form, formElements: initialElements, onSubmit, disable = false }: FormPreviewProps) {
+    const isMS = (initialElements[0] as unknown as FormStep)?.stepFields !== undefined;
     const data = Object.keys(form.watch());
     const { formState } = form;
+    const formElements = disable ? disableAllElements(initialElements) : initialElements;
+
     return (
         <div className="w-full animate-in rounded-md border">
             {data.length > 0 ? (
@@ -28,6 +32,7 @@ export function FormRender({ form, formElements, onSubmit }: FormPreviewProps) {
                             <MultiStepViewer
                                 formElements={formElements as unknown as FormStep[]}
                                 form={form}
+                                disable={disable}
                             />
                         ) : (
                             (formElements as FormElementOrList[]).map((element, i) => {
@@ -52,9 +57,9 @@ export function FormRender({ form, formElements, onSubmit }: FormPreviewProps) {
                                 );
                             })
                         )}
-                        {!isMS && (
+                        {!isMS && !disable && (
                             <div className="flex flex-row items-center justify-end w-full pt-3">
-                                <Button type="submit" className="rounded-lg" size="sm">
+                                <Button type="submit" className="rounded-lg">
                                     {formState.isSubmitting
                                         ? 'Submitting...'
                                         : formState.isSubmitted

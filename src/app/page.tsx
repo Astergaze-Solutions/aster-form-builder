@@ -1,62 +1,40 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { useEffect, useRef } from "react";
-import { type Swapy, createSwapy } from 'swapy'
-export default function Home() {
-  const swapy = useRef<Swapy>(null)
-  const container = useRef<HTMLDivElement>(null)
+"use client"
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { FormBuilderMain, type FormElementsProps } from '@/form-builder/components/form-builder-main';
+import JsonView from '@uiw/react-json-view';
+import { useState } from 'react';
 
-  useEffect(() => {
-    // If container element is loaded
-    if (container.current) {
-      swapy.current = createSwapy(container.current)
-
-      // event listeners
-      swapy.current.onSwap((event) => {
-        console.log('swap', event);
-      });
-    }
-    return () => {
-      // Destroy the swapy instance on component destroy
-      swapy.current?.destroy()
-    }
-  }, []);
-
-
-  return (
-
-    <div className="h-full w-full overflow-hidden flex flex-col items-center justify-center">
-      <h1>Swapy experiement</h1>
-      <div ref={container} className="w-[50vw] border rounded-xl p-10 m-2 flex flex-col gap-2">
-        <div data-swapy-slot="a" className="relative">
-          <div data-swapy-item="a" className="select-none w-full h-10 flex items-center bg-gray-300 rounded-lg p-2">
-            <div>A</div>
-          </div>
-
-        </div>
-
-        <div data-swapy-slot="b" className="relative" >
-          <div data-swapy-item="b" className="select-none w-full h-10 flex items-center bg-gray-300 rounded-lg p-2">
-            <div>B</div>
-          </div>
-
-        </div>
-        <div data-swapy-slot="c" className="relative" >
-          <div data-swapy-item="c" className="select-none w-full h-10 flex items-center bg-gray-300 rounded-lg p-2">
-            <div>c</div>
-          </div>
-
-        </div>
-        <div data-swapy-slot="d" className="relative" >
-          <div data-swapy-item="d" className="select-none w-full h-10 flex items-center bg-gray-300 rounded-lg p-2">
-            <div>d</div>
-          </div>
-
-        </div>
-      </div>
-
-      <br />
-      <a href="/form-builder"><Button>View Form Builder</Button></a>
-    </div>
-  );
+export default function FormBuilderPage() {
+  const [json, setJson] = useState<FormElementsProps>([]);
+  const [isOpen, setOpen] = useState(false);
+  const handleCreate = (formElement: FormElementsProps) => {
+    console.log(formElement);
+    setJson(formElement);
+    setOpen(true);
+  }
+  return <div className='p-10'>
+    <FormBuilderMain handleCreate={handleCreate} />
+    <Dialog open={isOpen}>
+      <DialogContent className='p-1'>
+        <DialogHeader className='p-3'>
+          <DialogTitle>Json Preview</DialogTitle>
+        </DialogHeader>
+        <ScrollArea style={{
+          height: '100%',
+          maxHeight: '70vh',
+        }}>
+          <DialogDescription className='p-3'>
+            <JsonView value={json} collapsed={2} enableClipboard={false} displayDataTypes={false} />
+          </DialogDescription>
+        </ScrollArea>
+        <DialogFooter className='p-3'>
+          <DialogClose>
+            <Button onClick={() => setOpen(false)}>Close</Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  </div>
 }
