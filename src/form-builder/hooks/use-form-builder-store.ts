@@ -18,6 +18,7 @@ import {
   transformToStepFormList,
 } from '@/form-builder/libs/form-elements-helpers';
 import { create } from 'zustand';
+import type { FormElementsProps } from '../components/form-builder-main';
 
 type MSForm = {
   formElements: FormStep[];
@@ -232,8 +233,7 @@ export const useFormBuilderStore = create<FormBuilderState>((set) => ({
       }
     });
   },
-  setTemplate: (templateName: keyof typeof templates) => {
-    const template = templates[templateName].template;
+  setTemplate: (template: FormElementsProps) => {
     const isTemplateMSForm =
       (template[0] as FormStep)?.stepFields !== undefined;
     set((state) => {

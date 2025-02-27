@@ -8,6 +8,7 @@ import type {
   ToggleGroupSingleProps,
 } from '@radix-ui/react-toggle-group';
 import type { OTPInputProps } from 'input-otp';
+import type { FormElementsProps } from './components/form-builder-main';
 
 type Option = { value: string; label: string };
 //------------------------------------------------------------
@@ -238,4 +239,4 @@ export type AppendElement = (options: {
   stepIndex?: number;
 }) => void;
 
-export type SetTemplate = (template: string) => void;
+export type SetTemplate = (template: FormElementsProps) => void;
