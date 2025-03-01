@@ -90,7 +90,7 @@ export function MultiStepViewer({
           <Button
             size="sm"
             type="button"
-            variant={'secondary'}
+            variant={'default'}
             onClick={goToNext}
           >
             Next
