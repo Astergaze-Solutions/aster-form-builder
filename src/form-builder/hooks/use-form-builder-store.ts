@@ -46,7 +46,7 @@ type FormBuilderState = {
 const initialFormElements = templates['contactUs']
   .template as FormElementOrList[];
 
-export const useFormBuilderStore = create<FormBuilderState>((set) => ({
+const useFormBuilderStore = create<FormBuilderState>((set) => ({
   formElements: initialFormElements,
   isMS: false,
   appendElement: (options) => {
