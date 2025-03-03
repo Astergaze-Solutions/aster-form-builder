@@ -1,38 +1,91 @@
 "use client";
-import { FormPreview } from '@/form-builder/components/form-preview'
+import { Button } from '@/components/ui/button';
 import { FormRender } from '@/form-builder/components/form-render'
 import { templates } from '@/form-builder/constant/templates'
-import type { FormElement, FormElementOrList, FormStep } from '@/form-builder/form-types';
+import type { FormElementOrList } from '@/form-builder/form-types';
+import useFormBuilderStore from '@/form-builder/hooks/use-form-builder-store';
 import { useFormRenderer } from '@/form-builder/hooks/use-form-renderer';
-import React from 'react'
+import JsonView from '@uiw/react-json-view';
+import { Clipboard, ClipboardCheck } from 'lucide-react';
+import React, { useEffect, useState } from 'react'
 
-const page = () => {
+const Page = () => {
     return (
-        <RenderTemplate templateName={'multiStepForm'} />
+        <RenderTemplate />
     )
 }
-const defaultValues = {
-    "Name": "Subu",
-    "last-name": "Acharya",
-    "your-email": "subuacharya19@gmail.com",
-    "phone-number": 9821504897,
-    "preferences": [
-        "technology"
-    ],
-    "Comment": "This is test"
-};
 
+const RenderTemplate = () => {
+    const formElements = useFormBuilderStore(s => s.formElements);
+    const [defaultValues, setDefaultValues] = useState();
+    const { form: submissionForm } = useFormRenderer({ formElements: formElements });
+    const [copied, setCopied] = useState(false);
 
-const RenderTemplate = ({ templateName }: { templateName: string }) => {
-    const formElements = templates[templateName]
-        .template as FormElementOrList[];
-    const { form } = useFormRenderer({ formElements: formElements, defaultValues: defaultValues });
+    useEffect(() => {
+        if (copied)
+            setTimeout(() => {
+                setCopied(false);
+            }, 2000)
+    }, [copied])
+    const handleCopy = () => {
+        navigator.clipboard.writeText(JSON.stringify(formElements || {}));
+        setCopied(true);
+    };
 
     return (
-        <div className='cursor-pointer'>
-            <FormRender onSubmit={(value) => { console.log(value) }} form={form} formElements={formElements} disable />
+        <div className='flex p-10 w-screen overflow-hidden'>
+            <div className='flex-1 overflow-y-auto'>
+
+                <div className='mx-auto max-w-[800px]'>
+                    <h1 className='text-2xl font-bold flex justify-between mb-10'>Form Submission Preview
+                    </h1>
+                    <FormRender onSubmit={(value) => { setDefaultValues(value) }} form={submissionForm} formElements={formElements as FormElementOrList[]} />
+                    <h1 className='text-2xl font-bold flex justify-between my-10'>Form Element Json
+                    </h1>
+                    <div className='border p-5 rounded-lg relative'>
+                        {copied ? <ClipboardCheck size={20} className='absolute right-1 top-1 text-green-500' /> : <Clipboard size={20} className='absolute right-1 top-1 text-gray-500' onClick={handleCopy} />}
+                        <JsonView value={formElements} collapsed={2} enableClipboard={false} displayDataTypes={false} />
+                    </div>
+                </div>
+            </div>
+            <RenderSubmittedDataTemplate defaultValues={defaultValues} formElements={formElements as FormElementOrList[]} />
         </div>
+
     );
 }
 
-export default page
+const RenderSubmittedDataTemplate = ({ defaultValues, formElements }: { defaultValues: object | undefined, formElements: FormElementOrList[] }) => {
+    const { form: submittedForm } = useFormRenderer({ formElements: formElements, defaultValues: defaultValues });
+    useEffect(() => {
+        if (defaultValues)
+            submittedForm.reset({ ...defaultValues });
+    }, [defaultValues])
+    const [copied, setCopied] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setCopied(false);
+        }, 2000)
+    }, [copied])
+    const handleCopy = () => {
+        navigator.clipboard.writeText(JSON.stringify(defaultValues || {}));
+        setCopied(true);
+    }
+
+    return (
+        <div className='flex-1 overflow-y-auto border-l-2'>
+            <div className='mx-auto max-w-[800px]'>
+                <h1 className='text-2xl font-bold flex justify-between mb-10'>Submitted Form Preview
+                </h1>
+                <FormRender onSubmit={(value) => { console.log(value) }} form={submittedForm} formElements={formElements} disable />
+                <h1 className='text-2xl font-bold flex justify-between my-10'>Submitted Data Preview
+                </h1>
+                <div className='border p-5 rounded-lg relative'>
+                    {copied ? <ClipboardCheck size={20} className='absolute right-1 top-1 text-green-500' /> : <Clipboard size={20} className='absolute right-1 top-1 text-gray-500' onClick={handleCopy} />}
+                    <JsonView value={defaultValues || {}} collapsed={2} enableClipboard={false} displayDataTypes={false} />
+                </div>
+            </div>
+        </div>
+    );
+}
+export default Page

@@ -26,7 +26,7 @@ export function StepContainer({
   return (
     <motion.div
       key={stepIndex}
-      className="rounded-lg px-3 md:px-4 md:py-5 py-4 border-dashed border bg-secondary/40 shadow-sm"
+      className="rounded-lg px-3 md:px-4 md:py-5 py-4 border-dashed border shadow-md"
       initial={{ opacity: 0, y: -15 }}
       animate={{ opacity: 1, y: 0, transition: { duration: 0.2, delay: 0.05 } }}
       exit={{ opacity: 0, y: -15, transition: { duration: 0.3 } }}

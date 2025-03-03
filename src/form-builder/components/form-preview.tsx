@@ -21,7 +21,7 @@ export function FormPreview({ form }: FormPreviewProps) {
   const data = Object.keys(form.watch());
   const { formState } = form;
   return (
-    <div className="w-full animate-in rounded-md border">
+    <div className="w-full rounded-md border">
       {data.length > 0 ? (
         <Form {...form}>
           <form
