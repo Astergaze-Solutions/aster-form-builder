@@ -5,6 +5,7 @@ import { RenderFormElement } from '@/form-builder/components/render-form-element
 import type { FormElement, FormStep } from '@/form-builder/form-types';
 import { useMultiStepForm } from '@/form-builder/hooks/use-multi-step-form';
 import { AnimatePresence, motion } from 'framer-motion';
+import * as React from 'react';
 import type { UseFormReturn } from 'react-hook-form';
 
 /**

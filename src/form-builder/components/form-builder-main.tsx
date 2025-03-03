@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Circle, Eye, Trash } from 'lucide-react';
 import { useEffect } from 'react';
+import * as React from 'react';
 import type { FormElementList, FormStep } from '../form-types';
 import { CommandProvider } from '../hooks/use-command-ctx';
 import { useFormBuilder } from '../hooks/use-form-builder';

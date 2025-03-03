@@ -13,6 +13,7 @@ import type {
 import useFormBuilderStore from '@/form-builder/hooks/use-form-builder-store';
 import { AnimatePresence, Reorder } from 'framer-motion';
 import { ArrowLeftRight, Plus } from 'lucide-react';
+import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { LuGripVertical } from 'react-icons/lu';
 import { MdDelete } from 'react-icons/md';

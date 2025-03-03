@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import useFormBuilderStore from '@/form-builder/hooks/use-form-builder-store';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
+import * as React from 'react';
 import { MdAdd, MdDelete } from 'react-icons/md';
 import { useCommand } from '../hooks/use-command-ctx';
 

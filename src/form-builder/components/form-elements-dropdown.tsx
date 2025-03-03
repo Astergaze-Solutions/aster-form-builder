@@ -10,6 +10,7 @@ import { formElementsList } from '@/form-builder/constant/form-elements-list';
 import type { FormElement } from '@/form-builder/form-types';
 import useFormBuilderStore from '@/form-builder/hooks/use-form-builder-store';
 import { DynamicIcon } from 'lucide-react/dynamic';
+import * as React from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { formElementsListIcon } from '../constant/form-elements-icons';
 

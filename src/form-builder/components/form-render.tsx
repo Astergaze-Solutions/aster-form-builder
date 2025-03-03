@@ -4,6 +4,7 @@ import { Form } from '@/components/ui/form';
 import { MultiStepViewer } from '@/form-builder/components/multi-step-viewer';
 import { RenderFormElement } from '@/form-builder/components/render-form-element';
 import type { FormElementList, FormElementOrList, FormStep } from '@/form-builder/form-types';
+import * as React from 'react';
 import type { UseFormReturn } from 'react-hook-form';
 import { disableAllElements } from '../libs/utils';
 

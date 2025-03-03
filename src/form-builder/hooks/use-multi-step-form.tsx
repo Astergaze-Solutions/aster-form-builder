@@ -2,6 +2,7 @@
 
 import type { FormStep } from '@/form-builder/form-types';
 import { useCallback, useState } from 'react';
+import * as React from 'react';
 
 type UseFormStepsProps = {
   initialSteps: FormStep[];

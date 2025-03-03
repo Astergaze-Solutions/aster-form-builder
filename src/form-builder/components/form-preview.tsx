@@ -7,6 +7,7 @@ import { RenderFormElement } from '@/form-builder/components/render-form-element
 import type { FormElementOrList, FormStep } from '@/form-builder/form-types';
 import { useFormBuilder } from '@/form-builder/hooks/use-form-builder';
 import useFormBuilderStore from '@/form-builder/hooks/use-form-builder-store';
+import * as React from 'react';
 import type { UseFormReturn } from 'react-hook-form';
 
 export interface FormPreviewProps {
