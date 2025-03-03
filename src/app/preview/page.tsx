@@ -43,7 +43,7 @@ const RenderTemplate = () => {
                     <h1 className='text-2xl font-bold flex justify-between my-10'>Form Element Json
                     </h1>
                     <div className='border p-5 rounded-lg relative'>
-                        {copied ? <ClipboardCheck size={20} className='absolute right-1 top-1 text-green-500' /> : <Clipboard size={20} className='absolute right-1 top-1 text-gray-500' onClick={handleCopy} />}
+                        {copied ? <span className='flex gap-2 items-center absolute right-1 top-1 text-green-500'><ClipboardCheck size={20} /> Copied</span> : <Clipboard size={20} className='absolute right-1 top-1 text-gray-500' onClick={handleCopy} />}
                         <JsonView value={formElements} collapsed={2} enableClipboard={false} displayDataTypes={false} />
                     </div>
                 </div>
@@ -81,7 +81,7 @@ const RenderSubmittedDataTemplate = ({ defaultValues, formElements }: { defaultV
                 <h1 className='text-2xl font-bold flex justify-between my-10'>Submitted Data Preview
                 </h1>
                 <div className='border p-5 rounded-lg relative'>
-                    {copied ? <ClipboardCheck size={20} className='absolute right-1 top-1 text-green-500' /> : <Clipboard size={20} className='absolute right-1 top-1 text-gray-500' onClick={handleCopy} />}
+                    {copied ? <span className='flex gap-2 items-center absolute right-1 top-1 text-green-500'><ClipboardCheck size={20} /> Copied</span> : <Clipboard size={20} className='absolute right-1 top-1 text-gray-500' onClick={handleCopy} />}
                     <JsonView value={defaultValues || {}} collapsed={2} enableClipboard={false} displayDataTypes={false} />
                 </div>
             </div>

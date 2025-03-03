@@ -8,7 +8,7 @@ export default function FormBuilderPage() {
     console.log(formElement);
     redirect("/preview");
   }
-  return <div className='p-10'>
+  return <div className='p-10 min-h-[85vh]'>
     <FormBuilderMain handleCreate={handleCreate} />
   </div>
 }

@@ -46,8 +46,8 @@ export default function RootLayout({
           </a>
 
           <div className="flex-1 flex gap-2 justify-end">
-            <a href="https://github.com/Subu19/form_builder"><Button className="flex gap-2" variant={"ghost"}><FaGithub size={30} />Source Code</Button></a>
-            <a href="https://www.linkedin.com/in/subashacharya/"><Button className="flex gap-2" variant={"ghost"}> <FaLinkedin size={30} />LinkedIn</Button></a>
+            <a href="https://github.com/Subu19/form_builder"><Button className="flex gap-2" variant={"link"}><FaGithub size={30} />Source Code</Button></a>
+            <a href="https://www.linkedin.com/in/subashacharya/"><Button className="flex gap-2" variant={"link"}> <FaLinkedin size={30} />LinkedIn</Button></a>
           </div>
         </footer>
       </body>
