@@ -69,7 +69,7 @@ export function FormBuilderMain({ handleCreate, onChange }: props) {
                       </DialogTrigger>
                       <DialogContent>
                         <DialogTitle>Form Preview</DialogTitle>
-                        <DialogDescription>
+                        <DialogDescription className='max-h-[70vh] overflow-y-auto'>
                           <FormPreview form={form} />
                         </DialogDescription>
                       </DialogContent>
