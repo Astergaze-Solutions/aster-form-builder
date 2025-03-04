@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,7 +42,7 @@ export default function RootLayout({
 
           <a href="https://asterconsult.app/" className="flex flex-col items-center justify-center">
             <h1 className="text-gray-500 font-bold">Used in production by</h1>
-            <Image src={"/astergaze-logo.svg"} alt="astercounsult" height={50} width={100}></Image>
+            <Image src={"/astergaze-logo.svg"} alt="astercounsult" height={50} width={100} />
           </a>
 
           <div className="flex-1 flex gap-2 justify-end">
