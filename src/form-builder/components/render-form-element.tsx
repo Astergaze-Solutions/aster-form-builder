@@ -493,14 +493,23 @@ export const RenderFormElement = ({
           control={form.control}
           name={formElement.name}
           render={({ field }: { field: ControllerRenderProps }) => (
-            <Input
-              {...field}
-              value={field.value?.fileName}
-              onChange={(e) => {
-                field.onChange(e.target.files ? e.target.files[0] : null);
-              }}
-              type="file"
-            />
+            <FormItem className="w-full">
+              <FormLabel>
+                {formElement.label} {formElement.required ? ' *' : ''}
+              </FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  value={field.value?.fileName}
+                  onChange={(e) => {
+                    field.onChange(e.target.files ? e.target.files[0] : null);
+                  }}
+                  type="file"
+                />
+              </FormControl>
+              <FormDescription>{formElement.description}</FormDescription>
+              <FormMessage />
+            </FormItem>
           )}
         />
       );
