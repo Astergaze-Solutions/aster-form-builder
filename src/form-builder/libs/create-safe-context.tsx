@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import * as React from 'react';
+import type * as React from 'react';
 
 export function createSafeContext<ContextValue>(errorMessage: string) {
   const Context = createContext<ContextValue | null>(null);

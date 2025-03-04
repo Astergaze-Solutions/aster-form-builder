@@ -48,7 +48,7 @@ import type { FormElement } from '@/form-builder/form-types';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
-import * as React from 'react';
+import type * as React from 'react';
 import type { ControllerRenderProps, UseFormReturn } from 'react-hook-form';
 
 export const RenderFormElement = ({

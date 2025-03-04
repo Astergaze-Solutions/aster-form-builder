@@ -8,5 +8,5 @@
         "**/Thumbs.db": true
     },
     "hide-files.files": [],
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
 }
