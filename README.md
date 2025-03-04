@@ -4,6 +4,8 @@ The **Form Builder** is a custom drag-and-drop form builder built using **Next.j
 
 This is a modified version of already existing Form Builder by [Indie UI](https://ui.indie-starter.dev/form-builder).
 
+✨Demo: [FormBuilder](https://form.subasacharya.com.np).
+
 ---
 
 ## Features
@@ -26,8 +28,13 @@ This is a modified version of already existing Form Builder by [Indie UI](https:
 - **Lightweight and Fast**: Built with **Bun** for faster development and runtime performance.
 
 ---
-
-## Installation
+## Component Installation ⚠️
+1. Install as UI Component in your project (experimental):
+   ```bash
+   npx dubu add form_builder
+   ```
+   This will create `form_builder` folder inside the main `/src` directory. This is still in development and it doesn't install all dependencies. You have to install Shadcn components and other required dependencies manually.
+## Project Installation
 
 1. Clone the repository:
    ```bash
@@ -41,7 +48,6 @@ This is a modified version of already existing Form Builder by [Indie UI](https:
    ```bash
    bun install
    ```
-
 ---
 
 ## Usage
