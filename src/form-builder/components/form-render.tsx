@@ -61,11 +61,7 @@ export function FormRender({ form, formElements: initialElements, onSubmit, disa
                         {!isMS && !disable && (
                             <div className="flex flex-row items-center justify-end w-full pt-3">
                                 <Button type="submit" className="rounded-lg">
-                                    {formState.isSubmitting
-                                        ? 'Submitting...'
-                                        : formState.isSubmitted
-                                            ? 'Submitted ✅'
-                                            : 'Submit'}
+                                    {'Submit'}
                                 </Button>
                             </div>
                         )}

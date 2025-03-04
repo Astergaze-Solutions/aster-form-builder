@@ -81,11 +81,7 @@ export function MultiStepViewer({
         </Button>
         {isLastStep ? !disable ? (
           <Button size="sm" type="submit">
-            {isSubmitting
-              ? 'Submitting...'
-              : isSubmitted
-                ? 'Submitted ✅'
-                : 'Submit'}
+            {'Submit'}
           </Button>
         ) : "" : (
           <Button

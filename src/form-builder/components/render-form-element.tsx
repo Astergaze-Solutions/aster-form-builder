@@ -182,6 +182,7 @@ export const RenderFormElement = ({
                 <Checkbox
                   {...field}
                   checked={field.value}
+                  defaultChecked={false}
                   disabled={formElement.disabled}
                   onCheckedChange={field.onChange}
                 />

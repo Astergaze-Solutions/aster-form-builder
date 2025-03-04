@@ -24,7 +24,7 @@ export const useFormBuilder = () => {
 
   const defaultValues: DefaultValues = filteredFormFields.reduce(
     (acc: DefaultValues, element) => {
-      acc[element.name] = element?.defaultValue ?? '';
+      acc[element.name] = element.fieldType === "Checkbox" ? false : element?.defaultValue ?? '';
       return acc;
     },
     {},
