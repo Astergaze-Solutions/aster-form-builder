@@ -46,7 +46,6 @@ export const useFormRenderer = ({ formElements, defaultValues: userInputs }: pro
         const { unsubscribe } = watch((data) => {
             setSubmittedData(data);
         });
-
         return unsubscribe;
     }, [watch]);
 

@@ -130,4 +130,8 @@ export const formElementsList = [
     fieldType: 'ToggleGroup',
     isNew: true,
   },
+  {
+    name: 'FileUpload',
+    fieldType: 'FileUpload',
+  },
 ];

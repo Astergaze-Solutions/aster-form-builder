@@ -64,7 +64,6 @@ export const useFormBuilder = () => {
   return {
     form,
     submittedData,
-
     onSubmit,
     resetForm,
   };

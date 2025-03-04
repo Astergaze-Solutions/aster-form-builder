@@ -25,7 +25,7 @@ export function FormRender({ form, formElements: initialElements, onSubmit, disa
         <div className="w-full animate-in rounded-md border">
             {data.length > 0 ? (
                 <Form {...form}>
-                    <form
+                    <form encType='multipart/form-data'
                         onSubmit={form.handleSubmit(onSubmit)}
                         className="flex flex-col p-2 md:p-5 w-full gap-2"
                     >

@@ -104,4 +104,10 @@ export const defaultFormElements: Record<
   Separator: {
     static: true,
   },
+  FileUpload:{
+    name: 'FileUpload',
+    label: 'Upload a file',
+    placeholder: 'Browse local files.',
+  },
+  
 };

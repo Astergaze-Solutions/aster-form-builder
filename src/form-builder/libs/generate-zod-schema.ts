@@ -61,6 +61,9 @@ export const generateZodSchema = (
           .array(z.string())
           .nonempty('Please select at least one item');
         break;
+      case 'FileUpload': 
+        elementSchema = z.instanceof(File)
+        break;
       case 'RadioGroup':
         elementSchema = z.string().min(1, 'Please select an item');
         break;

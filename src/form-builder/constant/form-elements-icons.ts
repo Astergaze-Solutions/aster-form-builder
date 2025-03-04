@@ -16,4 +16,5 @@ export const formElementsListIcon: Record<string, string> = {
   Switch: 'toggle-right',
   Textarea: 'letter-text',
   ToggleGroup: 'toggle-left',
+  FileUpload: 'file-up',
 };
